@@ -1,0 +1,195 @@
+// Header do Cadastrados {
+.ajusteCima {
+    padding: 23px;
+    display: flex;
+    flex-direction: row;
+}
+
+.ajusteText {
+    
+    height: 30px;
+    width: 135px;
+
+    border: 1px;
+    border-style: solid;
+    border-radius: 25px;
+    
+    margin-bottom: 3%;
+
+    border-color: #59585b;
+
+    text-align: center;
+}
+
+.alinharhd{
+
+    flex-direction: column;
+}
+
+.txtVermelho {
+
+    color: red;
+}
+
+.txtVerde {
+    
+    color: green;
+}
+
+.ajusteFiltro {
+
+    margin-left: 4%;
+    margin-bottom: 1%;
+}
+
+.ajusteNoti {
+
+    margin-top: 1%;
+    margin-left: 4%;
+}
+
+.b {
+
+    margin-left: 10%;
+    width: 10%;
+}
+ 
+.botao {
+
+    width: 15.6%;
+    height: 5%;
+
+    margin-left: 15%;
+
+    border: 1px;
+    border-style: solid;
+    border-radius: 25px;
+
+    vertical-align: middle;
+}
+
+.ajusteIcon {
+    margin-top: 2%;
+}
+
+.ajustePesq {
+
+    width: 20%;
+    height: 10px;
+    
+    margin-top: 0.5%;
+    margin-left: 15%;
+
+    flex-direction: row;
+}
+
+// Table Cadastrados {
+
+.container {
+    
+    width: 100%;
+    height: 100%;
+    
+    align-items: center;
+
+    margin-top: 2%;
+
+    
+}
+
+.list {
+    
+    list-style: none;
+    padding: 0;
+    display: table;
+    white-space: nowrap;
+    width: 100%;
+    aspect-ratio: 1/0.3;
+    
+}
+
+.list li {
+    
+    background-color: #f0f0f0;
+    display: table-row;
+    color: #5c5c5c;
+
+}
+
+.list li:nth-child(odd) {
+    
+    background-color: #f2f2f2;
+    display: table-row;
+    font-size: 9pt;
+    color: #5c5c5c;
+
+}
+
+.list li:nth-child(odd):hover {
+    
+    background-color: #dadada;
+
+}
+
+.list li:nth-child(even) {
+    
+    background-color: #e8e8e8;
+    display: table-row;
+    font-size: 9pt;
+    color: #5c5c5c;
+
+}
+
+.list li:nth-child(even):hover {
+    
+    background-color: #dadada;
+
+}
+
+.list li:nth-child(1) span:first-child {
+    
+    border-top-left-radius: 6px;
+    
+}
+
+.list li:nth-child(1) span:last-child {
+    
+    border-top-right-radius: 6px;
+    
+}
+
+
+.list li:nth-child(1) {
+    
+    background-color: #287261;
+    text-transform: uppercase;
+    font-size: 8pt;
+    font-weight: bold;
+    color: black;
+
+    
+}
+
+
+
+
+.list li:nth-child(1) span {
+    
+    border-bottom: 2px solid #287261;
+    padding: 14px;
+    
+}
+
+.list span {
+    
+    text-align: left;
+    display: table-cell;
+    padding: 6px;
+    vertical-align: middle;
+    
+}
+
+
+
+
+
