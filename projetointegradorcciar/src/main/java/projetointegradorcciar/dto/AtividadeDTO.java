@@ -6,9 +6,11 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.validation.annotation.Validated;
+import projetointegradorcciar.entity.Pessoa;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -44,4 +46,7 @@ public class AtividadeDTO {
     private LocalDateTime dataAtividade;
 
     private LocalTime horarioCadastro;
+
+    private List<Pessoa> pessoas;
+
 }

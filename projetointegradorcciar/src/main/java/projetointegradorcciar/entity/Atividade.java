@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 @Entity
 @Table(name = "atividades", schema = "public")
@@ -42,4 +43,12 @@ public class Atividade {
 
     @Column (name = "data_atividade")
     private LocalDateTime dataAtividade;
+
+    @ManyToMany
+    @JoinTable(
+            name = "atividade_pessoa",
+            joinColumns = @JoinColumn(name = "atividade_id"),
+            inverseJoinColumns = @JoinColumn(name = "pessoa_id")
+    )
+    private List<Pessoa> pessoas;
 }
