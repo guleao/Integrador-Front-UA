@@ -2,12 +2,26 @@
 .geral {
 
     display: flex;
+    background-color: whitesmoke;
+    margin-left: 2%;
+    margin-right: 2%;
+
+    padding: 1%;
+
+    border: 1px;
+    border-radius: 15px;
+    box-shadow: 1px 1px 0 0 rgb(178, 174, 174);
+
+
+
 }
 
 .ajusteCima {
-    padding: 25px;
+    padding: 15px;
     display: flex;
     flex-direction: row;
+
+    margin-left: 20%;
 
 }
 
@@ -19,6 +33,8 @@
     height: 10%;
     
     margin-left: 2%;
+
+    border: 4px;
 }
 
 
@@ -41,19 +57,25 @@
 
 .ajeitaBotao {
 
-    display: flex
+    display: flex;
 }
 
 .botao {
 
-    margin-left: 90%;
+    display: flex;
 
-    width: 5%;
-    height: 10%;
+    margin-top: 350px;
+    margin-right: 5px;
+    
+    width: 51%;
+    height: 13.5%;
+
+    
 
 }
 .botao2 {
 
+    margin-top: 350px;
     width: 5%;
     height: 10%;
 
