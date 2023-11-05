@@ -23,13 +23,14 @@ import { CadastroAtividadedetailsComponent } from './pages/atividades/cadastro-a
 import { CadastroAtividadelistComponent } from './pages/atividades/cadastro-atividadelist/cadastro-atividadelist.component'; 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { AtividadeListDialogComponent } from './dialogs/atividade-list-dialog/atividade-list-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
+import { DialogCancelarComponent } from './dialogs/atividade-list-dialog/dialog-cancelar/dialog-cancelar.component';
 
 
 
@@ -52,7 +53,8 @@ import { MatButtonModule } from '@angular/material/button';
     CadastrolistComponent,
     CadastroAtividadedetailsComponent,
     CadastroAtividadelistComponent,
-    AtividadeListDialogComponent
+    AtividadeListDialogComponent,
+    DialogCancelarComponent
   ],
   imports: [
     BrowserModule,
@@ -72,9 +74,23 @@ import { MatButtonModule } from '@angular/material/button';
     MatCardModule,
     MatDividerModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
   ],
-  providers: [],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }, // Defina o local para o Brasil
+  {
+    provide: MAT_DATE_FORMATS,
+    useValue: {
+      parse: {
+        dateInput: 'DD/MM/YYYY', // Formato de entrada (brasileiro)
+      },
+      display: {
+        dateInput: 'DD/MM/YYYY', // Formato de exibição (brasileiro)
+        monthYearLabel: 'MMMM YYYY',
+        dateA11yLabel: 'LL',
+        monthYearA11yLabel: 'MMMM YYYY',
+      },
+    },
+  },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

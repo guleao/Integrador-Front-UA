@@ -7,6 +7,7 @@ import { Atividade } from 'src/app/models/atividade';
 import { AtividadeService } from 'src/app/services/atividade.service';
 import { switchMap } from 'rxjs';
 import { AtividadeListDialogComponent } from 'src/app/dialogs/atividade-list-dialog/atividade-list-dialog.component';
+import { DialogCancelarComponent } from 'src/app/dialogs/atividade-list-dialog/dialog-cancelar/dialog-cancelar.component';
 
 
 @Component({
@@ -42,14 +43,26 @@ export class CadastroAtividadelistComponent {
     });
   }
 
+  openDialogCancel(id: number) {
+    const dialogRef = this.dialog.open(DialogCancelarComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == true) {
+        this.cancelaAtividade(id);
+      }
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
+
   listAll() {
 
     this.atividadeService.listAll().subscribe({
-      next: lista => { // QUANDO DÁ CERTO
+      next: lista => {
         this.listaAtividade = lista;
       },
-      error: erro => { // QUANDO DÁ ERRO
-        alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
+      error: erro => {
+        alert('ERRO CABULOSO');
         console.error(erro);
       }
     });
@@ -58,11 +71,11 @@ export class CadastroAtividadelistComponent {
 
   listAllConcluidas() {
     this.atividadeService.listAllConcluidas().subscribe({
-      next: lista => { // QUANDO DÁ CERTO
+      next: lista => {
         this.listaAtividade = lista;
       },
-      error: erro => { // QUANDO DÁ ERRO
-        alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
+      error: erro => {
+        alert('ERRO CABULOSO');
         console.error(erro);
       }
     });
@@ -71,11 +84,11 @@ export class CadastroAtividadelistComponent {
 
   listAllCanceladas() {
     this.atividadeService.listAllCanceladas().subscribe({
-      next: lista => { // QUANDO DÁ CERTO
+      next: lista => {
         this.listaAtividade = lista;
       },
-      error: erro => { // QUANDO DÁ ERRO
-        alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
+      error: erro => {
+        alert('ERRO CABULOSO');
         console.error(erro);
       }
     });
@@ -84,11 +97,11 @@ export class CadastroAtividadelistComponent {
 
   pesquisarAtividadePorNome(nome: string) {
     this.atividadeService.pesquisarPorNome(nome).subscribe({
-      next: lista => { // QUANDO DÁ CERTO
+      next: lista => {
         this.listaAtividade = lista;
       },
-      error: erro => { // QUANDO DÁ ERRO
-        alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
+      error: erro => {
+        alert('ERRO CABULOSO');
         console.error(erro);
       }
     });
@@ -98,7 +111,7 @@ export class CadastroAtividadelistComponent {
     this.atividadeService.concluirAtividade(id).subscribe({
       next: atividade => {
         this.listAll();
-        alert('deu certo')
+        alert('Atividade concluída')
       },
       error: erro => {
         alert('ERRO CABULOSO')
@@ -109,10 +122,10 @@ export class CadastroAtividadelistComponent {
 
   cancelaAtividade(id: number) {
     this.atividadeService.cancelarAtividade(id) .pipe(
-      switchMap(() => this.atividadeService.listAll()) // Recarrega a lista de pessoas após o cancelamento
+      switchMap(() => this.atividadeService.listAll())
     ).subscribe({
       next: atividade => {
-        alert('deu certo')
+        alert('Atividade cancelada')
       },
       error: erro => {
         alert('ERRO CABULOSO')
@@ -148,15 +161,6 @@ export class CadastroAtividadelistComponent {
   testeAlert() {
     alert('teste')
   }
-
-  // addLive(): void {
-  //   const dialogRef = this.dialog.open(AtividadesdetailsComponent, {
-  //     // maxHeight: '95vh',
-  //     minWidth: '400px',
-  //     // width: '25vw',
-  //   });
-
-  // }
 
   adicionar() {
     this.router.navigateByUrl('home/cadastroAtividade')

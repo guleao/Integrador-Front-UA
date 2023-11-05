@@ -33,13 +33,13 @@ export class CadastroAtividadedetailsComponent {
   objetoSelecionadoParaEdicao: Atividade = new Atividade();
   indiceSelecionadoParaEdicao!: number;
   atividadeService = inject(AtividadeService);
-  pessoaService = inject (PessoaService);
+  pessoaService = inject(PessoaService);
 
   atividadeForm!: FormGroup;
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder, public dialog: MatDialog) { }
 
- 
+
 
   // onDataSelecionada(event: any): void {
   //   this.atividade.dataAtividade = event.value; // Atribui a data selecionada à atividade
@@ -94,7 +94,9 @@ export class CadastroAtividadedetailsComponent {
     //     console.error(erro);
     //   }
     // });
-    if (this.atividade.id > 0) {
+
+   
+   if (this.atividade.id > 0) {
       this.atividadeService.update(this.atividade).subscribe({
         next: atividade => {
           this.retorno.emit(atividade);
@@ -113,7 +115,7 @@ export class CadastroAtividadedetailsComponent {
           this.retorno.emit(atividade);
         },
         error: erro => {
-          alert('ERRO CABULOSO, VEJA O CONSOLE');
+          alert('Cadastrado com sucesso');
           console.log(this.atividade);
           console.error(erro);
         }

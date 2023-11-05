@@ -33,55 +33,72 @@ export class CadastrodetailsComponent {
   }
 
 
-save() {
-  if (this.pessoa.id > 0) {
-    this.registrarPessoaService.update(this.pessoa).subscribe({
-      next: retorno => {
-        console.log(retorno);
-        alert("Atualizado com sucesso");
-      },
-      error: erro => {
-        console.log(erro);
-        alert('ERRO CABULOSO, VEJA O CONSOLE');
-      }
-    });
-  } else {
-    this.registrarPessoaService.save(this.pessoa).subscribe({
-      next: retorno => {
-        console.log(retorno);
-        alert("Registrado com sucesso");
-      },
-      error: erro => {
-        console.log(erro);
-      }
-    });
+  save() {
+
+    if (!this.pessoa.nome) {
+      alert('Nome não pode ser nulo')
+      return
+    } else if (!this.pessoa.cpf || this.pessoa.cpf.length > 14 || this.pessoa.cpf.length < 11) {
+      alert('CPF inválido')
+      return;
+    } else if (!this.pessoa.telefone || this.pessoa.telefone.length < 11 || this.pessoa.telefone.length > 11) {
+      alert('Telefone inválido')
+    }
+    else if (!this.pessoa.rg || this.pessoa.rg.length > 12 || this.pessoa.rg.length < 12) {
+      alert('RG inválido')
+    }
+    else if (!this.pessoa.nacionalidade) {
+      alert('Nacionalidade não pode ser nula')
+    }
+
+    if (this.pessoa.id > 0) {
+      this.registrarPessoaService.update(this.pessoa).subscribe({
+        next: retorno => {
+          console.log(retorno);
+          alert("Atualizado com sucesso");
+        },
+        error: erro => {
+          console.log(erro);
+          alert('ERRO CABULOSO, VEJA O CONSOLE');
+        }
+      });
+    } else {
+      this.registrarPessoaService.save(this.pessoa).subscribe({
+        next: retorno => {
+          console.log(retorno);
+          alert("Registrado com sucesso");
+        },
+        error: erro => {
+          console.log(erro);
+        }
+      });
+    }
   }
-}
 
-onEdit(pessoa: Pessoa) {
-  this.edit.emit(pessoa);
-}
+  onEdit(pessoa: Pessoa) {
+    this.edit.emit(pessoa);
+  }
 
-ngOnInit(): void {
-  const pessoa: Pessoa = this.route.snapshot.data['pessoa'];
+  ngOnInit(): void {
+    const pessoa: Pessoa = this.route.snapshot.data['pessoa'];
 
-  this.pessoa.id = pessoa.id;
-  this.pessoa.nome = pessoa.nome;
-  this.pessoa.cpf = pessoa.cpf
-  this.pessoa.telefone = pessoa.telefone
-  this.pessoa.dataNascimento = pessoa.dataNascimento;
-  this.pessoa.escolaridade = pessoa.escolaridade;
-  this.pessoa.sexo = pessoa.sexo;
-  this.pessoa.nacionalidade = pessoa.nacionalidade;
-  this.pessoa.naturalidade = pessoa.naturalidade;
-  this.pessoa.rg = pessoa.rg;
+    this.pessoa.id = pessoa.id;
+    this.pessoa.nome = pessoa.nome;
+    this.pessoa.cpf = pessoa.cpf
+    this.pessoa.telefone = pessoa.telefone
+    this.pessoa.dataNascimento = pessoa.dataNascimento;
+    this.pessoa.escolaridade = pessoa.escolaridade;
+    this.pessoa.sexo = pessoa.sexo;
+    this.pessoa.nacionalidade = pessoa.nacionalidade;
+    this.pessoa.naturalidade = pessoa.naturalidade;
+    this.pessoa.rg = pessoa.rg;
 
-  this.pessoa.endereco.cep = pessoa.endereco.cep;
-  this.pessoa.endereco.localidade = pessoa.endereco.localidade;
-  this.pessoa.endereco.logradouro = pessoa.endereco.logradouro;
-  this.pessoa.endereco.numCasa = pessoa.endereco.numCasa;
-  this.pessoa.endereco.municipio = pessoa.endereco.municipio;
-  this.pessoa.endereco.uf = pessoa.endereco.uf
-  console.log(pessoa);
-} 
+    this.pessoa.endereco.cep = pessoa.endereco.cep;
+    this.pessoa.endereco.localidade = pessoa.endereco.localidade;
+    this.pessoa.endereco.logradouro = pessoa.endereco.logradouro;
+    this.pessoa.endereco.numCasa = pessoa.endereco.numCasa;
+    this.pessoa.endereco.municipio = pessoa.endereco.municipio;
+    this.pessoa.endereco.uf = pessoa.endereco.uf
+    console.log(pessoa);
+  }
 }
