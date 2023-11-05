@@ -41,10 +41,10 @@ export class CadastrodetailsComponent {
     } else if (!this.pessoa.cpf || this.pessoa.cpf.length > 14 || this.pessoa.cpf.length < 11) {
       alert('CPF inválido')
       return;
-    } else if (!this.pessoa.telefone || this.pessoa.telefone.length < 11 || this.pessoa.telefone.length > 11) {
+    } else if (!this.pessoa.telefone) {
       alert('Telefone inválido')
     }
-    else if (!this.pessoa.rg || this.pessoa.rg.length > 12 || this.pessoa.rg.length < 12) {
+    else if (!this.pessoa.rg) {
       alert('RG inválido')
     }
     else if (!this.pessoa.nacionalidade) {
@@ -101,4 +101,6 @@ export class CadastrodetailsComponent {
     this.pessoa.endereco.uf = pessoa.endereco.uf
     console.log(pessoa);
   }
+
+
 }

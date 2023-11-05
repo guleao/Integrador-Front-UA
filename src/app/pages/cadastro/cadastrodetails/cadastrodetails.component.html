@@ -19,6 +19,7 @@
           type="text"
           placeholder="Nome completo"
           class="form-control input-md ajustePESQ"
+          maxlength="40"
           [(ngModel)]="pessoa.nome"
         />
       </div>
@@ -33,8 +34,10 @@
           name="Telefone"
           type="text"
           placeholder="Telefone"
+          maxlength="14"
           class="form-control input-md"
           [(ngModel)]="pessoa.telefone"
+          appPhoneMask
         />
       </div>
 
@@ -42,11 +45,13 @@
         <label class="col-md-4 control-label" for="CPF">CPF:</label>
 
         <input
-          id="CPF"
+          id="cpf"
           name="CPF"
           type="text"
           placeholder="CPF"
           class="form-control input-md"
+          maxlength="14"
+          appCpfMask
           [(ngModel)]="pessoa.cpf"
         />
       </div>
@@ -60,6 +65,8 @@
           type="text"
           placeholder="RG"
           class="form-control input-md"
+          appRgMask
+          maxlength="12"
           [(ngModel)]="pessoa.rg"
         />
       </div>
@@ -72,7 +79,8 @@
           id="Data de nascimento"
           name="Data de nascimento"
           type="text"
-          placeholder="Data de Nascimento"
+          maxlength="4"
+          placeholder="Ano de Nascimento"
           class="form-control input-md"
           [(ngModel)]="pessoa.dataNascimento"
         />

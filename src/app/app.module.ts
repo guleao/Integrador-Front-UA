@@ -31,8 +31,9 @@ import { MatCardModule } from '@angular/material/card';
 import { AtividadeListDialogComponent } from './dialogs/atividade-list-dialog/atividade-list-dialog.component';
 import { MatButtonModule } from '@angular/material/button';
 import { DialogCancelarComponent } from './dialogs/atividade-list-dialog/dialog-cancelar/dialog-cancelar.component';
-
-
+import { CpfMaskDirective } from './cpf-mask.directive';
+import { PhoneMaskDirective } from './phone-mask.directive';
+import { RgMaskDirective } from './rg-mask.directive';
 
 
 
@@ -54,7 +55,10 @@ import { DialogCancelarComponent } from './dialogs/atividade-list-dialog/dialog-
     CadastroAtividadedetailsComponent,
     CadastroAtividadelistComponent,
     AtividadeListDialogComponent,
-    DialogCancelarComponent
+    DialogCancelarComponent,
+    CpfMaskDirective,
+    PhoneMaskDirective,
+    RgMaskDirective
   ],
   imports: [
     BrowserModule,
