@@ -45,9 +45,9 @@ public class PessoaDTO {
     @NotBlank (message = "Telefone não pode estar em branco")
     private String telefone;
 
-    @NotNull (message = "Naturalidade não pode ser nula")
-    @NotBlank (message = "Naturalidade não pode estar em branco")
-    @Size (max = 50, message = "Naturalidade excede limite de caracteres")
+//    @NotNull (message = "Naturalidade não pode ser nula")
+//    @NotBlank (message = "Naturalidade não pode estar em branco")
+//    @Size (max = 50, message = "Naturalidade excede limite de caracteres")
     private String naturalidade;
     @NotNull (message = "Nacionalidade não pode ser nula")
     @NotBlank (message = "Nacionalidade não pode estar em branco")
@@ -58,12 +58,14 @@ public class PessoaDTO {
 
     private Sexo sexo;
 
-    private Administrador cadastroPor;
+//    private Administrador cadastroPor;
 
     private LocalDateTime dataCadastro;
 
     private LocalDateTime edicaoCadastro;
 
     private boolean ativo;
+
+    private Long totalAtivos;
 
 }

@@ -32,6 +32,7 @@ public class PessoaController {
 
     @GetMapping
     public ResponseEntity<List<Pessoa>> listaCompleta() {
+        System.out.println(pessoaRepository.totalAtivos());
         return ResponseEntity.ok(this.pessoaRepository.findAll());
     }
 
@@ -40,6 +41,22 @@ public class PessoaController {
         return pessoaRepository.findByNome(nome);
     }
 
+
+    @GetMapping ("/ordenar")
+    public ResponseEntity<List<Pessoa>> orderByName() {
+        return ResponseEntity.ok(this.pessoaRepository.orderByName());
+    }
+
+    @GetMapping ("/ordenar-data")
+    public ResponseEntity<List<Pessoa>> orderByDataCadastro() {
+        return ResponseEntity.ok(this.pessoaRepository.orderByDataCadastro());
+    }
+
+    @GetMapping("total-ativos")
+    public ResponseEntity<Long> totalAtivos() {
+        Long total = pessoaRepository.totalAtivos();
+        return ResponseEntity.ok(total);
+    }
     @PostMapping
     public ResponseEntity<HttpStatus> cadastrar (@Validated @RequestBody final PessoaDTO pessoaDTO) {
         try {

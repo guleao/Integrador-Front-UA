@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -17,7 +18,7 @@ public class Atividade {
     public Atividade() {
     }
 
-    public Atividade(Long id, boolean ativo, String nomeAtividade, String descricao, LocalTime horarioCadastro, LocalDateTime dataAtividade) {
+    public Atividade(Long id, boolean ativo, String nomeAtividade, String descricao, LocalTime horarioCadastro, Date dataAtividade) {
         this.id = id;
         this.ativo = ativo;
         this.nomeAtividade = nomeAtividade;
@@ -35,14 +36,14 @@ public class Atividade {
     private boolean ativo;
     @Column (name = "nome_atividade", nullable = false)
     private String nomeAtividade;
-    @Column(name = "descricao", nullable = false)
+    @Column(name = "descricao")
     private String descricao;
 
     @Column (name = "horario_cadastro")
     private LocalTime horarioCadastro;
 
     @Column (name = "data_atividade")
-    private LocalDateTime dataAtividade;
+    private Date dataAtividade;
 
     @ManyToMany
     @JoinTable(
@@ -51,4 +52,14 @@ public class Atividade {
             inverseJoinColumns = @JoinColumn(name = "pessoa_id")
     )
     private List<Pessoa> pessoas;
+
+    @Column (name = "concluida")
+    private boolean concluida;
+
+    @Column (name = "cancelada")
+    private boolean cancelada;
+
+    @Column (name = "horario_atividade")
+    private String horarioAtividade;
+
 }

@@ -40,7 +40,6 @@ public class PessoaService {
 
         pessoa.setAtivo(true);
 
-
         this.pessoaRepository.save(pessoa);
     }
 

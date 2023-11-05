@@ -13,6 +13,7 @@ import projetointegradorcciar.repository.PessoaRepository;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,21 +25,25 @@ public class AtividadeService {
     private PessoaRepository pessoaRepository;
 
     @Transactional(rollbackFor = Exception.class)
-    public void validaAtividade (AtividadeDTO atividadeDTO){
+    public AtividadeDTO validaAtividade (AtividadeDTO atividadeDTO){
 
         var atividade = new Atividade();
         BeanUtils.copyProperties(atividadeDTO, atividade);
 
-        atividade.setDataAtividade(LocalDateTime.now());
+//        atividade.setDataAtividade(LocalDateTime.now());
 
-        List<Pessoa> pessoas = atividadeDTO.getPessoas().stream()
-                .map(pessoaDTO -> pessoaRepository.findById(pessoaDTO.getId()).orElse(null))
-                .filter(Objects::nonNull)
-                .collect(Collectors.toList());
-        atividade.setPessoas(pessoas);
+//        List<Pessoa> pessoas = atividadeDTO.getPessoas().stream()
+//                .map(pessoaDTO -> pessoaRepository.findById(pessoaDTO.getId()).orElse(null))
+//                .filter(Objects::nonNull)
+//                .collect(Collectors.toList());
+//        atividade.setPessoas(pessoas);
 
-
-        this.atividadeRepository.save(atividade);
+        atividade.setAtivo(true);
+//        this.atividadeRepository.save(atividade);
+        Atividade atividadeSalva = this.atividadeRepository.save(atividade);
+        AtividadeDTO atividadeDTO2 = new AtividadeDTO();
+        BeanUtils.copyProperties(atividadeSalva,atividadeDTO2);
+        return atividadeDTO2;
     }
 
     @Transactional (rollbackFor = Exception.class)
@@ -55,6 +60,25 @@ public class AtividadeService {
         this.atividadeRepository.save(atividadeBanco);
     }
 
+    public Atividade findById(Long id) {
+        Optional<Atividade> atividadeOptional = atividadeRepository.findById(id);
+
+        if (atividadeOptional.isPresent()) {
+            return atividadeOptional.get();
+        } else {
+            return null; // Ou você pode lançar uma exceção, dependendo dos requisitos da sua aplicação
+        }
+    }
+
+    public Atividade save(Atividade atividade) {
+        return atividadeRepository.save(atividade);
+    }
+    public List<Atividade> pesquisarPorNome(String nome) {
+
+        return atividadeRepository.findByNomeAtividade(nome);
+    }
+
+
     @Transactional (rollbackFor = Exception.class)
     public void deletarAtividade (final Long id){
         final Atividade atividadeBanco = this.atividadeRepository.findById(id).orElse(null);
@@ -65,6 +89,7 @@ public class AtividadeService {
 
         this.atividadeRepository.delete(atividadeBanco);
     }
+
 
     public static class RegistroNaoEncontradoException extends RuntimeException {
         public RegistroNaoEncontradoException(String message) {

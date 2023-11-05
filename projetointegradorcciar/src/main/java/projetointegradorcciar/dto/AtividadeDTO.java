@@ -10,6 +10,7 @@ import projetointegradorcciar.entity.Pessoa;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -20,7 +21,7 @@ public class AtividadeDTO {
     public AtividadeDTO() {
     }
 
-    public AtividadeDTO(Long id, boolean ativo, String nomeAtividade, String descricao, LocalTime horarioCadastro, LocalDateTime dataAtividade) {
+    public AtividadeDTO(Long id, boolean ativo, String nomeAtividade, String descricao, LocalTime horarioCadastro, Date dataAtividade) {
         this.id = id;
         this.ativo = ativo;
         this.nomeAtividade = nomeAtividade;
@@ -38,15 +39,24 @@ public class AtividadeDTO {
     @Size(max = 200, message = "Nome da atividade excede limite de caracteres")
     private String nomeAtividade;
 
-    @NotNull(message = "Descrição da atividade não pode ser nula")
-    @NotBlank(message = "Descrição da atividade não pode estar em branco")
+//    @NotNull(message = "Descrição da atividade não pode ser nula")
+//    @NotBlank(message = "Descrição da atividade não pode estar em branco")
     @Size(max = 500, message = "Descrição da atividade excede limite de caracteres")
     private String descricao;
 
-    private LocalDateTime dataAtividade;
+//    private LocalDateTime dataAtividade;
 
     private LocalTime horarioCadastro;
 
     private List<Pessoa> pessoas;
+
+    private boolean concluida;
+
+    private boolean cancelada;
+
+    private Date dataAtividade;
+
+    private String horarioAtividade;
+
 
 }

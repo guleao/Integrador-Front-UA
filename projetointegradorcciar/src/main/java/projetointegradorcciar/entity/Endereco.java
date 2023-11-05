@@ -38,6 +38,9 @@ public class Endereco {
     @Column(name = "uf")
     private String uf;
 
+    @Column(name = "municipio")
+    private String municipio;
+
     public Endereco() {
     }
 

@@ -2,6 +2,7 @@ package projetointegradorcciar.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
@@ -31,41 +32,89 @@ public class AtividadeController {
 
     @GetMapping
     public ResponseEntity<List<Atividade>> listaCompleta() {
-        return ResponseEntity.ok(this.atividadeRepository.findAll());
-
+        return ResponseEntity.ok(this.atividadeRepository.getAllAtividadePorData());
     }
 
+    @GetMapping ("/concluidas")
+    public ResponseEntity<List<Atividade>> getConcluidas() {
+        return ResponseEntity.ok(this.atividadeRepository.getAllAtividadeByConcluida());
+    }
+
+    @GetMapping ("/canceladas")
+    public ResponseEntity<List<Atividade>> getCanceladas() {
+        return ResponseEntity.ok(this.atividadeRepository.getAllAtividadeByCancelada());
+    }
+
+    @GetMapping("/atividades/por-nome")
+    public List<Atividade> pesquisarPorNome(@RequestParam String nome) {
+        return atividadeService.pesquisarPorNome(nome);
+    }
+
+//    @PostMapping
+//    public ResponseEntity<HttpStatus> cadastrar(@Validated @RequestBody final AtividadeDTO atividade) {
+//        try {
+//            atividadeService.validaAtividade(atividade);
+//            return ResponseEntity.ok(HttpStatus.CREATED);        } catch (Exception e) {
+//            String errorMessage = getErrorMessage(e);
+//            return new ResponseEntity<> (null, HttpStatus.BAD_REQUEST);
+//        }
+//    }
+
+
     @PostMapping
-    public ResponseEntity<String> cadastrar(@Validated @RequestBody final AtividadeDTO atividade) {
+    public AtividadeDTO cadastrarAtividade (@Validated @RequestBody final AtividadeDTO atividadeDTO) {
         try {
-            atividadeService.validaAtividade(atividade);
-            return ResponseEntity.ok("Atividade cadastrada com sucesso");
-        } catch (Exception e) {
+            return this.atividadeService.validaAtividade(atividadeDTO);
+        } catch (DataIntegrityViolationException e) {
             String errorMessage = getErrorMessage(e);
-            return ResponseEntity.internalServerError().body(errorMessage);
+            return null;
         }
     }
 
+    @PostMapping("/atualizarAtividade/{id}")
+    public ResponseEntity<HttpStatus> concluirAtividade(@PathVariable Long id) {
+        Atividade atividade = atividadeService.findById(id);
+        if (atividade != null) {
+            atividade.setConcluida(true);
+            atividade.setAtivo(false);
+            atividade.setCancelada(false);
+            atividadeService.save(atividade);
+            return ResponseEntity.ok(HttpStatus.CREATED);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("/cancelarAtividade/{id}")
+    public ResponseEntity<HttpStatus> cancelarAtividade(@PathVariable Long id) {
+        Atividade atividade = atividadeService.findById(id);
+        if (atividade != null) {
+            atividade.setConcluida(false);
+            atividade.setAtivo(false);
+            atividade.setCancelada(true);
+            atividadeService.save(atividade);
+            return ResponseEntity.ok(HttpStatus.CREATED);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
     @PutMapping ("/{id}")
-    public ResponseEntity<String> editar(@PathVariable("id") final Long id, @Validated @RequestBody final AtividadeDTO atividadeDTO) {
+    public ResponseEntity<HttpStatus> editar(@PathVariable("id") final Long id, @Validated @RequestBody final AtividadeDTO atividadeDTO) {
         try {
             atividadeService.editarAtividade(id,atividadeDTO);
-            return ResponseEntity.ok("Atividade atualizada com sucesso");
+            return ResponseEntity.ok(HttpStatus.CREATED);
         } catch (DataIntegrityViolationException e) {
-            String errorMessage = getErrorMessage(e);
-            return ResponseEntity.internalServerError().body(errorMessage);
+            return new ResponseEntity<> (null, HttpStatus.BAD_REQUEST);
         }
     }
 
     @DeleteMapping
-    public ResponseEntity<String> deletaAtividade (@RequestParam  ("id") final Long id){
+    public ResponseEntity<HttpStatus> deletaAtividade (@RequestParam  ("id") final Long id){
         try {
             this.atividadeService.deletarAtividade(id);
-            return ResponseEntity.ok("Atividade excluida com sucesso.");
-        }
+            return ResponseEntity.ok(HttpStatus.CREATED);          }
         catch (Exception e){
-            String errorMessage = getErrorMessage(e);
-            return ResponseEntity.internalServerError().body(errorMessage);
+            return new ResponseEntity<> (null, HttpStatus.BAD_REQUEST);
         }
     }
 

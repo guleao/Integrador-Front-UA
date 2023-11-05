@@ -42,14 +42,14 @@ public class Pessoa {
     @Column (name = "telefone", nullable = false, length = 17)
     @Pattern(regexp = "\\(?\\d{2,}\\)?[ -]?\\d{4,}[\\-\\s]?\\d{4}", message = "Formato de telefone inválido")
     private String telefone;
-    @Column (name = "naturalidade", nullable = false, length = 50)
+    @Column (name = "naturalidade", length = 50)
     private String naturalidade;
 
     @Column (name = "nacionalidade", nullable = false, length = 50)
     private String nacionalidade;
 
     @Enumerated (EnumType.STRING)
-    @Column (name = "escolaridade", nullable = false)
+    @Column (name = "escolaridade")
     private Escolaridade escolaridade;
 
     @Enumerated (EnumType.STRING)
@@ -68,6 +68,8 @@ public class Pessoa {
 
     @Column (name = "ativo", nullable = false)
     private boolean ativo;
+
+    private Long totalAtivos;
 
 
     @PrePersist
