@@ -1,0 +1,87 @@
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Endereco } from 'src/app/models/endereco';
+import { Pessoa } from 'src/app/models/pessoa';
+import { Viacep } from 'src/app/models/viacep';
+import { PessoaService } from 'src/app/services/pessoa.service';
+
+@Component({
+  selector: 'app-cadastrodetails',
+  templateUrl: './cadastrodetails.component.html',
+  styleUrls: ['./cadastrodetails.component.scss']
+})
+export class CadastrodetailsComponent {
+  pessoa: Pessoa = new Pessoa();
+  viaCep: Viacep = new Viacep();
+  pessoaParaEditar!: Pessoa;
+
+  @Output() edit = new EventEmitter();
+  registrarPessoaService = inject(PessoaService);
+
+  constructor(private route: ActivatedRoute) { }
+
+  buscarCep() {
+    this.viaCep.getCepData(this.pessoa.endereco.cep).subscribe((data: any) => {
+      console.log(data)
+      this.pessoa.endereco.logradouro = data.bairro;
+      this.pessoa.endereco.localidade = data.logradouro;
+      this.pessoa.endereco.cep = data.cep;
+      this.pessoa.endereco.municipio = data.localidade;
+      this.pessoa.endereco.uf = data.uf
+      this.pessoa.endereco.id;
+    });
+  }
+
+
+save() {
+  if (this.pessoa.id > 0) {
+    this.registrarPessoaService.update(this.pessoa).subscribe({
+      next: retorno => {
+        console.log(retorno);
+        alert("Atualizado com sucesso");
+      },
+      error: erro => {
+        console.log(erro);
+        alert('ERRO CABULOSO, VEJA O CONSOLE');
+      }
+    });
+  } else {
+    this.registrarPessoaService.save(this.pessoa).subscribe({
+      next: retorno => {
+        console.log(retorno);
+        alert("Registrado com sucesso");
+      },
+      error: erro => {
+        console.log(erro);
+      }
+    });
+  }
+}
+
+onEdit(pessoa: Pessoa) {
+  this.edit.emit(pessoa);
+}
+
+ngOnInit(): void {
+  const pessoa: Pessoa = this.route.snapshot.data['pessoa'];
+
+  this.pessoa.id = pessoa.id;
+  this.pessoa.nome = pessoa.nome;
+  this.pessoa.cpf = pessoa.cpf
+  this.pessoa.telefone = pessoa.telefone
+  this.pessoa.dataNascimento = pessoa.dataNascimento;
+  this.pessoa.escolaridade = pessoa.escolaridade;
+  this.pessoa.sexo = pessoa.sexo;
+  this.pessoa.nacionalidade = pessoa.nacionalidade;
+  this.pessoa.naturalidade = pessoa.naturalidade;
+  this.pessoa.rg = pessoa.rg;
+
+  this.pessoa.endereco.cep = pessoa.endereco.cep;
+  this.pessoa.endereco.localidade = pessoa.endereco.localidade;
+  this.pessoa.endereco.logradouro = pessoa.endereco.logradouro;
+  this.pessoa.endereco.numCasa = pessoa.endereco.numCasa;
+  this.pessoa.endereco.municipio = pessoa.endereco.municipio;
+  this.pessoa.endereco.uf = pessoa.endereco.uf
+  console.log(pessoa);
+} 
+}

@@ -1,0 +1,116 @@
+<div class="header">
+  <h1>Adicionar nova atividade</h1>
+</div>
+<button (click)="adicionar(modal1)">Adicionar Pessoas</button>
+
+<div class="add-task">
+  <div class="content">
+    <form [formGroup]="atividadeForm" (submit)="salvar()">
+      <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input matInput placeholder="Nome" formControlName="nomeAtividade" [(ngModel)]="atividade.nomeAtividade"/>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Data</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="dataAtividade"
+          [(ngModel)]="atividade.dataAtividade"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Descrição</mat-label>
+        <textarea
+          matInput
+          placeholder="Descrição"
+          formControlName="descricao"
+          [(ngModel)]="atividade.descricao"
+        ></textarea>
+      </mat-form-field>
+      <div fxFlex="50" fxFill fxLayoutAlign="start center">
+        <mat-form-field>
+            <mat-label>Horário da atividade</mat-label>
+            <input matInput type="time" placeholder="HH:mm" formControlName="horarioAtividade" #time [(ngModel)]="atividade.horarioAtividade" ng2-mask="00:00" />
+        </mat-form-field>
+    </div>
+      <button
+        [disabled]="atividadeForm.invalid"
+        type="submit"
+        mat-raised-button
+        color="primary"
+      >
+        Submit
+      </button>
+    </form>
+
+
+    <label class="col-md-4 control-label" for="descricao"
+        >Pessoas cadastradas:</label
+      >
+      <div>
+        <button (click)="generatePDF()">Gerar PDF</button>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>#ID</th>
+              <th>Nome</th>
+              <th>Telefone</th>
+              <th>Opções</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pessoa of atividade.pessoas; let i = index">
+              <td>
+                {{ pessoa.id }}
+              </td>
+              <td>
+                {{ pessoa.nome }}
+              </td>
+              <td>
+                {{ pessoa.telefone }}
+              </td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  (click)="excluir(pessoa, i)"
+                >
+                  Excluir
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</div>
+
+<ng-template #modal1 let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title">Adicionar Pessoa</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <app-cadastrolist
+      [modoLancamento]="true"
+      (retorno)="retornoPessoasList($event)"
+    ></app-cadastrolist>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-light"
+      (click)="modal.close('Close click')"
+    >
+      Fechar
+    </button>
+  </div>
+</ng-template>

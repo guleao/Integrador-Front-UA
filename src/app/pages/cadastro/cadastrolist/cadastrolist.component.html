@@ -1,0 +1,119 @@
+<div class="ajusteCima">
+  <div class="alinharhd">
+    <div class="ajusteText">
+      <p class="alinharText">
+        <span class="txtVerde">{{ totalAtivos }}</span> Cadastrados
+      </p>
+    </div>
+  </div>
+
+  <div class="b">
+    <div class="ajusteFiltro">
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+      >
+        <mat-icon>filter_list</mat-icon> Filtrar..
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>filter_list</mat-icon>
+          <span (click)="listPorOrdemAlfabetica()"
+            >Filtrar por ordem alfabetica</span
+          >
+        </button>
+        <button mat-menu-item>
+          <mat-icon>filter_list</mat-icon>
+          <span (click)="listPorDataCadastro()"
+            >Filtrar por data de cadastro</span
+          >
+        </button>
+        <button mat-menu-item>
+          <mat-icon>filter_list</mat-icon>
+          <span (click)="listAll()">Remover filtros</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+
+  <div class="botao">
+    <a class="btn btn-lg btn-default"
+      ><span class="material-icons md-24 ajusteIcon" (click)="adicionar()">
+        add_box </span
+      >Adicionar cadastro</a
+    >
+  </div>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>filter_list</mat-icon>
+      <span>Filtrar por concluídas</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>filter_list</mat-icon>
+      <span>Filtrar por canceladas</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>filter_list</mat-icon>
+      <span (click)="listAll()">Filtrar por ativas</span>
+    </button>
+  </mat-menu>
+
+  <div class="ajustePesq">
+    <div id="custom-search-input">
+      <div class="input-group col-md-12 ajusteIcon">
+        <span class="material-icons"> search </span>
+        <input
+          type="text"
+          class="search-query form-control"
+          placeholder="Pesquisar"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="listWrap">
+    <ul class="list">
+      <li>
+        <span>ID</span>
+        <span>Nome</span>
+        <span>Telefone</span>
+        <span>Ações</span>
+        <span></span>
+      </li>
+      <li *ngFor="let pessoa of lista">
+        <span>{{ pessoa.id }}</span>
+        <span>{{ pessoa.nome }}</span>
+        <span>{{ pessoa.telefone }}</span>
+        <span *ngIf="!modoLancamento">
+          <div class="btn-group btn-group-xs" role="group" aria-label="...">
+            <button
+              type="button"
+              class="btn btn-default"
+              (click)="onEdit(pessoa)"
+            >
+              Edit
+            </button>
+            <button
+              type="button"
+              class="btn btn-default"
+              (click)="deletar(pessoa.id)"
+            >
+              Delete
+            </button>
+          </div>
+        </span>
+        <button *ngIf="modoLancamento"
+        type="button"
+        class="btn btn-primary"
+        (click)="lancamento(pessoa)"
+      >
+        Lançar
+      </button>
+        <span></span>
+      </li>
+    </ul>
+  </div>
+</div>
