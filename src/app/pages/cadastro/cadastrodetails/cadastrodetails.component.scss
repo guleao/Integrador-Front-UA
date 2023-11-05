@@ -1,113 +1,103 @@
-
 .geral {
+  display: flex;
+  background-color: whitesmoke;
+  margin-left: 2%;
+  margin-right: 2%;
 
-    display: flex;
-    background-color: whitesmoke;
-    margin-left: 2%;
-    margin-right: 2%;
+  padding: 1%;
 
-    padding: 1%;
-
-    border: 1px;
-    border-radius: 15px;
-    box-shadow: 1px 1px 0 0 rgb(178, 174, 174);
-
-
-
+  border: 1px;
+  border-radius: 15px;
+  box-shadow: 1px 1px 0 0 rgb(178, 174, 174);
 }
 
 .ajusteCima {
-    padding: 15px;
-    display: flex;
-    flex-direction: row;
+  padding: 15px;
+  display: flex;
+  flex-direction: row;
 
-    margin-left: 20%;
+  font-weight: bold;
 
+  margin-left: 10px;
+  margin-right: 20px;
+  margin-top: 20px;
 }
 
+#novoCadastro {
+  margin-bottom: 20px;
+  font-weight: bold;
+
+  margin-left: 10px;
+  margin-top: 2px;
+}
 // Formulário de novo cadastro :
 
-.tudo { 
-    
-    width: 30%;
-    height: 10%;
-    
-    margin-left: 2%;
+.tudo {
+  width: 30%;
+  height: 10%;
 
-    border: 4px;
+  margin-left: 2%;
+
+  border: 4px;
 }
 
+.tudo2 {
+  width: 30%;
+  height: 10%;
 
-.tudo2 { 
-    
-    width: 30%;
-    height: 10%;
-    
-    margin-left: 2%;
-    
+  margin-left: 2%;
 }
 
 .tudo3 {
+  width: 30%;
+  height: 10%;
 
-    width: 30%;
-    height: 10%;
-    
-    margin-left: 2%;
+  margin-left: 2%;
 }
 
 .ajeitaBotao {
-
-    display: flex;
+  display: flex;
 }
 
 .botao {
+  display: flex;
 
-    display: flex;
-
-    margin-top: 350px;
-    margin-right: 5px;
-    
-    width: 51%;
-    height: 13.5%;
-
-    
-
+  margin-top: 350px;
+  margin-right: 5px;
+  margin-left: 10px;
 }
 .botao2 {
-
-    margin-top: 350px;
-    width: 5%;
-    height: 10%;
-
+  margin-top: 350px;
+  width: 5%;
+  height: 10%;
 }
 
 .separa {
-    margin-top: 4%;
+  margin-top: 4%;
 }
 
-
 .btn-circle {
-    width: 30px;
-    height: 30px;
-    text-align: center;
-    padding: 6px 0;
-    font-size: 12px;
-    line-height: 1.428571429;
-    border-radius: 15px;
-  }
-  .btn-circle.btn-lg {
-    width: 50px;
-    height: 50px;
-    padding: 10px 16px;
-    font-size: 18px;
-    line-height: 1.33;
-    border-radius: 25px;
-  }
-  .btn-circle.btn-xl {
-    width: 70px;
-    height: 70px;
-    padding: 10px 16px;
-    font-size: 24px;
-    line-height: 1.33;
-    border-radius: 35px;
-  }
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+.btn-circle.btn-lg {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
+}

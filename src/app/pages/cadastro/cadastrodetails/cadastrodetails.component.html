@@ -1,8 +1,6 @@
 <div class="ajusteCima">
-  <h1>
-    <span class="material-icons md-36"> add_circle_outline </span> Novo
-    Cadastro:
-  </h1>
+  <!-- <span id="iconeMais" class="material-icons md-36"> add_circle_outline </span> -->
+  <h1 id="novoCadastro">Novo Cadastro:</h1>
 </div>
 
 <form>
@@ -90,12 +88,13 @@
     <div class="tudo2">
       <div class="form-group">
         <label class="col-md-4 control-label" for="Nome completo">Sexo:</label>
-        <!-- <input id="Nome completo" name="Nome completo" type="text" placeholder="Sexo" class="form-control input-md"> -->
         <select
+        required=""
           id="Nome completo"
           class="form-control selectAjt"
           name="sexoSelect"
           class="form-control input-md"
+          placeholer = "teste"
           [(ngModel)]="pessoa.sexo"
         >
           <option value="" disabled selected>Sexo</option>
@@ -186,18 +185,25 @@
 
     <div class="ajeitaBotao">
       <div class="botao">
-        <button type="button" class="btn btn-success btn-circle btn-lg">
-          <span (click)="save()" class="material-icons md-36 ajeitaIcon">
-            done
-          </span>
+        <button (click)="save()" type="button" class="btn btn-success btn-md">
+          Cadastrar
         </button>
       </div>
 
       <div class="botao2">
-        <button type="button" class="btn btn-danger btn-circle btn-lg">
-          <span class="material-icons"> close </span>
+        <button
+          routerLink="/home/cadastro"
+          type="button"
+          class="btn btn-danger btn-md"
+        >
+          Voltar
         </button>
       </div>
     </div>
   </div>
 </form>
+
+<script
+  src="https://kit.fontawesome.com/b5463cd1fb.js"
+  crossorigin="anonymous"
+></script>
