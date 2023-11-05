@@ -63,17 +63,19 @@
     <div id="custom-search-input">
       <div class="input-group col-md-12 ajusteIcon">
         <span class="material-icons"> search </span>
-        <input
-          type="text"
-          class="search-query form-control"
-          placeholder="Pesquisar"
-        />
+        <form class="pesquisa"> 
+          <input class="search-query form-control"
+          type="text" class="form-label" placeholder="Pesquisa de Cliente" [formControl]="queryField" >
+          <button class="btn btn-primary search" type="submit" (click)="onSearch()" ><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg></button>
+      </form>
       </div>
     </div>
   </div>
 </div>
 
-<div class="container">
+<div *ngIf="!value" class="container">
   <div class="listWrap">
     <ul class="list">
       <li>
@@ -84,6 +86,53 @@
         <span></span>
       </li>
       <li *ngFor="let pessoa of lista">
+        <span>{{ pessoa.id }}</span>
+        <span>{{ pessoa.nome }}</span>
+        <span>{{ pessoa.telefone }}</span>
+        <span *ngIf="!modoLancamento">
+          <div class="btn-group btn-group-xs" role="group" aria-label="...">
+            <button
+              type="button"
+              class="btn btn-default"
+              (click)="onEdit(pessoa)"
+            >
+              Edit
+            </button>
+            <button
+              type="button"
+              class="btn btn-default"
+              (click)="deletar(pessoa.id)"
+            >
+              Delete
+            </button>
+          </div>
+        </span>
+        <button *ngIf="modoLancamento"
+        type="button"
+        class="btn btn-primary"
+        (click)="lancamento(pessoa)"
+      >
+        Lançar
+      </button>
+        <span></span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+
+<div *ngIf="value" class="container">
+  <div class="listWrap">
+    <ul class="list">
+      <li>
+        <span>ID</span>
+        <span>Nome</span>
+        <span>Telefone</span>
+        <span>Ações</span>
+        <span></span>
+      </li>
+      <li *ngFor="let pessoa of filteredList">
         <span>{{ pessoa.id }}</span>
         <span>{{ pessoa.nome }}</span>
         <span>{{ pessoa.telefone }}</span>

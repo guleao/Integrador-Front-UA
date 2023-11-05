@@ -23,7 +23,7 @@ export class CadastroAtividadelistComponent {
 
   atividadeService = inject(AtividadeService);
   modalService = inject(NgbModal);
-
+  
   public atividadeForm!: FormGroup;
 
   constructor(public dialog: MatDialog, private router: Router, private route: ActivatedRoute, private fb: FormBuilder,) {
