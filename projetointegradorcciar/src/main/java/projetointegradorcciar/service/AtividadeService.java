@@ -56,6 +56,7 @@ public class AtividadeService {
         }
 
         BeanUtils.copyProperties(atividadeDTO, atividadeBanco);
+        atividadeBanco.setAtivo(true);
 
         this.atividadeRepository.save(atividadeBanco);
     }
