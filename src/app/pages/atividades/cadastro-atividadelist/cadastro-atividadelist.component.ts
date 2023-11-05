@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -23,7 +23,12 @@ export class CadastroAtividadelistComponent {
 
   atividadeService = inject(AtividadeService);
   modalService = inject(NgbModal);
-  
+
+  queryField = new FormControl;
+  value: string = '';
+
+  filteredList: Atividade[] = [];
+
   public atividadeForm!: FormGroup;
 
   constructor(public dialog: MatDialog, private router: Router, private route: ActivatedRoute, private fb: FormBuilder,) {
@@ -52,6 +57,23 @@ export class CadastroAtividadelistComponent {
       }
       console.log(`Dialog result: ${result}`);
     });
+  }
+
+  onSearch() {
+    alert('teste')
+    this.value = this.queryField.value;
+    this.value = this.value.toLowerCase();
+    if (this.value && (this.value = this.value.trim()) != '') {
+      this.filteredList = [];
+      for (let i = 0; i < this.listaAtividade.length; i++) {
+        let nomeMinusculo = this.listaAtividade[i].nomeAtividade.toLowerCase();
+        if (nomeMinusculo.includes(this.value)) {
+          this.filteredList.push(this.listaAtividade[i])
+        }
+      }
+    } else {
+      this.filteredList = this.listaAtividade;
+    }
   }
 
 
@@ -121,7 +143,7 @@ export class CadastroAtividadelistComponent {
   }
 
   cancelaAtividade(id: number) {
-    this.atividadeService.cancelarAtividade(id) .pipe(
+    this.atividadeService.cancelarAtividade(id).pipe(
       switchMap(() => this.atividadeService.listAll())
     ).subscribe({
       next: atividade => {
