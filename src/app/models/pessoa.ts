@@ -15,4 +15,5 @@ export class Pessoa {
     sexo!: Sexo;
     escolaridade!: Escolaridade;
     totalAtivos!: number;
+    dataCadastro!: Date | null;
 }

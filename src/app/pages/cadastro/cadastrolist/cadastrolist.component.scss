@@ -1,195 +1,114 @@
-// Header do Cadastrados {
-.ajusteCima {
-    padding: 23px;
-    display: flex;
-    flex-direction: row;
-}
-
-.ajusteText {
-    
-    height: 30px;
-    width: 135px;
-
-    border: 1px;
-    border-style: solid;
-    border-radius: 25px;
-    
-    margin-bottom: 3%;
-
-    border-color: #59585b;
-
-    text-align: center;
-}
-
-.alinharhd{
-
-    flex-direction: column;
-}
-
-.txtVermelho {
-
-    color: red;
-}
-
-.txtVerde {
-    
-    color: green;
-}
-
-.ajusteFiltro {
-
-    margin-left: 4%;
-    margin-bottom: 1%;
-}
-
-.ajusteNoti {
-
-    margin-top: 1%;
-    margin-left: 4%;
-}
-
-.b {
-
-    margin-left: 10%;
-    width: 10%;
-}
- 
-.botao {
-
-    width: 15.6%;
-    height: 5%;
-
-    margin-left: 15%;
-
-    border: 1px;
-    border-style: solid;
-    border-radius: 25px;
-
-    vertical-align: middle;
-}
-
-.ajusteIcon {
-    margin-top: 2%;
-}
-
-.ajustePesq {
-
-    width: 20%;
-    height: 10px;
-    
-    margin-top: 0.5%;
-    margin-left: 15%;
-
-    flex-direction: row;
-}
-
-// Table Cadastrados {
-
-.container {
-    
-    width: 100%;
-    height: 100%;
-    
-    align-items: center;
-
-    margin-top: 2%;
-
-    
-}
-
-.list {
-    
-    list-style: none;
-    padding: 0;
-    display: table;
-    white-space: nowrap;
-    width: 100%;
-    aspect-ratio: 1/0.3;
-    
-}
-
-.list li {
-    
-    background-color: #f0f0f0;
-    display: table-row;
-    color: #5c5c5c;
-
-}
-
-.list li:nth-child(odd) {
-    
-    background-color: #f2f2f2;
-    display: table-row;
-    font-size: 9pt;
-    color: #5c5c5c;
-
-}
-
-.list li:nth-child(odd):hover {
-    
-    background-color: #dadada;
-
-}
-
-.list li:nth-child(even) {
-    
-    background-color: #e8e8e8;
-    display: table-row;
-    font-size: 9pt;
-    color: #5c5c5c;
-
-}
-
-.list li:nth-child(even):hover {
-    
-    background-color: #dadada;
-
-}
-
-.list li:nth-child(1) span:first-child {
-    
-    border-top-left-radius: 6px;
-    
-}
-
-.list li:nth-child(1) span:last-child {
-    
-    border-top-right-radius: 6px;
-    
-}
-
-
-.list li:nth-child(1) {
-    
-    background-color: #287261;
-    text-transform: uppercase;
-    font-size: 8pt;
-    font-weight: bold;
-    color: black;
-
-    
-}
-
-
-
-
-.list li:nth-child(1) span {
-    
-    border-bottom: 2px solid #287261;
-    padding: 14px;
-    
-}
-
-.list span {
-    
-    text-align: left;
-    display: table-cell;
+body {
+    background: #eee;
+  }
+  
+  .icons i {
+    color: #b5b3b3;
+    border: 1px solid #b5b3b3;
     padding: 6px;
-    vertical-align: middle;
-    
-}
-
-
-
-
-
+    margin-left: 4px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .mt-3 {
+    width: 100%;
+  }
+  
+  .activity-done {
+    font-weight: 600;
+  }
+  
+  .list-group li {
+    margin-bottom: 12px;
+  }
+  
+  .list li {
+    list-style: none;
+    padding: 10px;
+    border: 1px solid #e3dada;
+    margin-top: 12px;
+    border-radius: 5px;
+    background: #fff;
+  }
+  
+  .checkicon {
+    color: green;
+    font-size: 19px;
+  }
+  
+  .date-time {
+    font-size: 12px;
+  }
+  
+  .profile-image {
+    padding: 20px;
+  }
+  
+  #lixo {
+    color: rgba(255, 0, 0, 0.808);
+    padding: 20px;
+    cursor: pointer;
+  }
+  
+  .ml-2 {
+    margin-left: 2px;
+  }
+  
+  .ml-3 {
+    margin-left: 20px;
+  }
+  
+  .mt-3 {
+    border-radius: 20px;
+  }
+  
+  #campoPesquisa {
+    box-shadow: 3px 3px 3px #888888;
+  }
+  
+  #addAtividade {
+    box-shadow: 3px 3px 3px #888888;
+    font-weight: bold;
+  }
+  
+  #cancelado {
+    margin-left: 10px;
+    color: red;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  #cards {
+    border-radius: 8px;
+    box-shadow: 3px 3px 3px #888888;
+  }
+  
+  #concluido {
+    color: green;
+    cursor: pointer;
+  }
+  
+  #lapis {
+    color: orange;
+    cursor: pointer;
+  }
+  
+  #campoPesquisa {
+    border: 1px solid rgba(0, 0, 0, 0.575);
+  }
+  
+  #addAtividade {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  #titulo {
+    font-weight: bold;
+  }
+  
+  #search-addon {
+    border: 3px solid rgb(0, 0, 0);
+    background-color: white;
+    color: black;
+  }
+  

@@ -39,7 +39,8 @@ export class PessoaResolver implements Resolve<Pessoa> {
       nacionalidade: '',
       sexo: Sexo.NULL,
       escolaridade: Escolaridade.NULL,
-      totalAtivos: 0
+      totalAtivos: 0,
+      dataCadastro: null
     };
     return of(pessoaSemEndereco);
   }
