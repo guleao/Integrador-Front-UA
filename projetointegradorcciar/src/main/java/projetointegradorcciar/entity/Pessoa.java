@@ -43,9 +43,6 @@ public class Pessoa {
     @Column (name = "telefone", nullable = false, length = 17)
     @Pattern(regexp = "\\(?\\d{2,}\\)?[ -]?\\d{4,}[\\-\\s]?\\d{4}", message = "Formato de telefone inválido")
     private String telefone;
-    @Column (name = "naturalidade", length = 50)
-    private String naturalidade;
-
     @Column (name = "nacionalidade", nullable = false, length = 50)
     private String nacionalidade;
 
@@ -57,11 +54,6 @@ public class Pessoa {
     @Column (name = "sexo", nullable = false)
     private Sexo sexo;
 
-    @OneToOne
-    @JoinColumn(name = "adm_id")
-    @JsonManagedReference
-    private Administrador cadastroPor;
-
     @Column (name = "cadastro_data")
     private Date dataCadastro;
     @Column (name = "edicao_cadastro")
@@ -71,14 +63,6 @@ public class Pessoa {
     private boolean ativo;
 
     private Long totalAtivos;
-
-
-//    @PrePersist
-//    private void prePersist ()
-//    {
-//        this.dataCadastro = LocalDateTime.now();
-//        this.ativo = true;
-//    }
 
     @PreUpdate
     private void preUpdate ()

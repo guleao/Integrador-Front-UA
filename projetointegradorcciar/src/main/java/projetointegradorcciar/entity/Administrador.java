@@ -16,9 +16,6 @@ import org.hibernate.validator.constraints.br.CPF;
 @AllArgsConstructor
 public class Administrador {
 
-    @OneToOne(mappedBy = "cadastroPor") // Nome do campo em Pessoa
-    @JsonBackReference
-    private Pessoa pessoa;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column (name = "id", nullable = false, unique = true)

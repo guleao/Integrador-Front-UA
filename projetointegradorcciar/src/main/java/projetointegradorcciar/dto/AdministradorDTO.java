@@ -21,8 +21,6 @@ public class AdministradorDTO {
 
     private Long id;
 
-    private Pessoa pessoa;
-
     @NotNull(message = "Nome não pode ser nulo")
     @NotBlank(message = "Nome não estar ser em branco")
     @Size(max = 50, message = "Nome excede limite de caracteres")

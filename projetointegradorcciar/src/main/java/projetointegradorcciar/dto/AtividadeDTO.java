@@ -3,7 +3,9 @@ package projetointegradorcciar.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.validation.annotation.Validated;
 import projetointegradorcciar.entity.Pessoa;
@@ -16,20 +18,9 @@ import java.util.List;
 @Getter
 @Setter
 @Validated
+@NoArgsConstructor
+@AllArgsConstructor
 public class AtividadeDTO {
-
-    public AtividadeDTO() {
-    }
-
-    public AtividadeDTO(Long id, boolean ativo, String nomeAtividade, String descricao, LocalTime horarioCadastro, Date dataAtividade) {
-        this.id = id;
-        this.ativo = ativo;
-        this.nomeAtividade = nomeAtividade;
-        this.descricao = descricao;
-        this.horarioCadastro = horarioCadastro;
-        this.dataAtividade = dataAtividade;
-    }
-
 
     private Long id;
     private boolean ativo;
@@ -39,12 +30,8 @@ public class AtividadeDTO {
     @Size(max = 200, message = "Nome da atividade excede limite de caracteres")
     private String nomeAtividade;
 
-//    @NotNull(message = "Descrição da atividade não pode ser nula")
-//    @NotBlank(message = "Descrição da atividade não pode estar em branco")
-    @Size(max = 500, message = "Descrição da atividade excede limite de caracteres")
+    @Size(max = 200, message = "Descrição da atividade excede limite de caracteres")
     private String descricao;
-
-//    private LocalDateTime dataAtividade;
 
     private LocalTime horarioCadastro;
 

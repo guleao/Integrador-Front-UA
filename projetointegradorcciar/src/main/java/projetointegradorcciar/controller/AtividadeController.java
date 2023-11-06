@@ -50,17 +50,6 @@ public class AtividadeController {
         return atividadeService.pesquisarPorNome(nome);
     }
 
-//    @PostMapping
-//    public ResponseEntity<HttpStatus> cadastrar(@Validated @RequestBody final AtividadeDTO atividade) {
-//        try {
-//            atividadeService.validaAtividade(atividade);
-//            return ResponseEntity.ok(HttpStatus.CREATED);        } catch (Exception e) {
-//            String errorMessage = getErrorMessage(e);
-//            return new ResponseEntity<> (null, HttpStatus.BAD_REQUEST);
-//        }
-//    }
-
-
     @PostMapping
     public AtividadeDTO cadastrarAtividade (@Validated @RequestBody final AtividadeDTO atividadeDTO) {
         try {
@@ -107,8 +96,6 @@ public class AtividadeController {
             return new ResponseEntity<> (null, HttpStatus.BAD_REQUEST);
         }
     }
-
-    //TESTE
 
     @DeleteMapping
     public ResponseEntity<HttpStatus> deletaAtividade (@RequestParam  ("id") final Long id){

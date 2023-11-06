@@ -52,11 +52,8 @@ public class PessoaService {
             throw new RegistroNaoEncontradoException("Não foi possível identificar o registro informado");
         }
 
-        LocalDateTime dataCadastro = pessoa.getDataCadastro();
-
         BeanUtils.copyProperties(pessoaDTO, pessoa);
 
-        pessoa.setDataCadastro(dataCadastro);
         pessoa.setEdicaoCadastro(LocalDateTime.now());
         pessoa.setAtivo(true);
 

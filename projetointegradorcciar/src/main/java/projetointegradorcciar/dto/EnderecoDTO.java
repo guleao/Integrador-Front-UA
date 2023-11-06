@@ -32,11 +32,6 @@ public class EnderecoDTO {
     @Size(max = 200, message = "Localidade excede limite de caracteres")
     private String localidade;
 
-    //    @NotNull(message = "Bairro não pode ser nulo")
-//    @NotBlank(message = "Bairro não pode estar em branco")
-//    @Size(max = 200, message = "Bairro excede limite de caracteres")
-    private String bairro;
-
     @NotNull (message = "Número da casa não pode ser nulo")
     private int numCasa;
 
@@ -44,4 +39,10 @@ public class EnderecoDTO {
     @NotBlank(message = "UF não pode estar em branco")
     @Size(max = 100, message = "UF excede limite de caracteres")
     private String uf;
+
+    @NotNull(message = "Municipio não pode ser nulo")
+    @NotBlank(message = "Municipio não pode estar em branco")
+    @Size(max = 256, message = "Municipio excede limite de caracteres")
+    private String municipio;
+
 }

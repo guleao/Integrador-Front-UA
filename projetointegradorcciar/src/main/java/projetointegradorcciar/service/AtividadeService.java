@@ -30,16 +30,8 @@ public class AtividadeService {
         var atividade = new Atividade();
         BeanUtils.copyProperties(atividadeDTO, atividade);
 
-//        atividade.setDataAtividade(LocalDateTime.now());
-
-//        List<Pessoa> pessoas = atividadeDTO.getPessoas().stream()
-//                .map(pessoaDTO -> pessoaRepository.findById(pessoaDTO.getId()).orElse(null))
-//                .filter(Objects::nonNull)
-//                .collect(Collectors.toList());
-//        atividade.setPessoas(pessoas);
-
         atividade.setAtivo(true);
-//        this.atividadeRepository.save(atividade);
+
         Atividade atividadeSalva = this.atividadeRepository.save(atividade);
         AtividadeDTO atividadeDTO2 = new AtividadeDTO();
         BeanUtils.copyProperties(atividadeSalva,atividadeDTO2);
@@ -67,7 +59,7 @@ public class AtividadeService {
         if (atividadeOptional.isPresent()) {
             return atividadeOptional.get();
         } else {
-            return null; // Ou você pode lançar uma exceção, dependendo dos requisitos da sua aplicação
+            return null;
         }
     }
 

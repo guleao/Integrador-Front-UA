@@ -21,6 +21,4 @@ public interface AtividadeRepository extends JpaRepository<Atividade,Long> {
     List<Atividade> findByNomeAtividade(String nome);
 
 
-//    @Query ("SELECT COUNT(p) FROM PedidoEntity p WHERE p.delivery = false AND p.dataPedido = :data")
-//    Long totalPedidosBalcao(@Param("data") LocalDate data);
 }

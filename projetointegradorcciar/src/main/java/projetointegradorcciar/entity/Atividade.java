@@ -1,7 +1,9 @@
 package projetointegradorcciar.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
@@ -11,21 +13,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "atividades", schema = "public")
-@Getter
-@Setter
+@Getter @Setter
+@AllArgsConstructor @NoArgsConstructor
 public class Atividade {
-
-    public Atividade() {
-    }
-
-    public Atividade(Long id, boolean ativo, String nomeAtividade, String descricao, LocalTime horarioCadastro, Date dataAtividade) {
-        this.id = id;
-        this.ativo = ativo;
-        this.nomeAtividade = nomeAtividade;
-        this.descricao = descricao;
-        this.horarioCadastro = horarioCadastro;
-        this.dataAtividade = dataAtividade;
-    }
 
     @Id
     @Column(name = "atividade", nullable = false, unique = true)
@@ -38,9 +28,6 @@ public class Atividade {
     private String nomeAtividade;
     @Column(name = "descricao")
     private String descricao;
-
-    @Column (name = "horario_cadastro")
-    private LocalTime horarioCadastro;
 
     @Column (name = "data_atividade")
     private Date dataAtividade;

@@ -19,8 +19,5 @@ public interface PessoaRepository extends JpaRepository<Pessoa,Long> {
     @Query (value = "SELECT COUNT(p) FROM Pessoas p WHERE p.ativo = true", nativeQuery = true)
     Long totalAtivos();
 
-    //    @Query ("SELECT COUNT(p) FROM PedidoEntity p WHERE p.delivery = false AND p.dataPedido = :data")
-//    Long totalPedidosBalcao(@Param("data") LocalDate data);
-
 
 }
