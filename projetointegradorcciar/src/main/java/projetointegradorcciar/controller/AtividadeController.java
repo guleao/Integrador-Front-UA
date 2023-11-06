@@ -108,6 +108,8 @@ public class AtividadeController {
         }
     }
 
+    //TESTE
+
     @DeleteMapping
     public ResponseEntity<HttpStatus> deletaAtividade (@RequestParam  ("id") final Long id){
         try {

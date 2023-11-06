@@ -10,6 +10,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -62,7 +63,7 @@ public class Pessoa {
     private Administrador cadastroPor;
 
     @Column (name = "cadastro_data")
-    private LocalDateTime dataCadastro;
+    private Date dataCadastro;
     @Column (name = "edicao_cadastro")
     private LocalDateTime edicaoCadastro;
 
@@ -72,12 +73,12 @@ public class Pessoa {
     private Long totalAtivos;
 
 
-    @PrePersist
-    private void prePersist ()
-    {
-        this.dataCadastro = LocalDateTime.now();
-        this.ativo = true;
-    }
+//    @PrePersist
+//    private void prePersist ()
+//    {
+//        this.dataCadastro = LocalDateTime.now();
+//        this.ativo = true;
+//    }
 
     @PreUpdate
     private void preUpdate ()

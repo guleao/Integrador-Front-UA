@@ -16,6 +16,7 @@ import projetointegradorcciar.entity.Escolaridade;
 import projetointegradorcciar.entity.Sexo;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -60,7 +61,7 @@ public class PessoaDTO {
 
 //    private Administrador cadastroPor;
 
-    private LocalDateTime dataCadastro;
+    private Date dataCadastro;
 
     private LocalDateTime edicaoCadastro;
 
