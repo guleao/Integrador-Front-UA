@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Admin } from 'src/app/models/admin';
 
 @Component({
   selector: 'app-header',
@@ -6,6 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+
+  constructor() {}
 
 
   showMenu() {
@@ -24,4 +28,6 @@ export class HeaderComponent {
     }
     alert("teste")
   }
+
+
 }

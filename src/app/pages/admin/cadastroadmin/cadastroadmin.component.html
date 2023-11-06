@@ -1,0 +1,102 @@
+<div class="ajusteCima">
+  <!-- <span id="iconeMais" class="material-icons md-36"> add_circle_outline </span> -->
+  <h1 id="novoCadastro">Perfil do administrador:</h1>
+</div>
+
+<form>
+  <div class="geral">
+    <div class="tudo">
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="Nome completo"
+          >Nome completo:</label
+        >
+
+        <input
+          id="Nome completo"
+          name="Nome completo"
+          type="text"
+          placeholder="Nome completo"
+          class="form-control input-md ajustePESQ"
+          [(ngModel)]="admin.nomeAdm"
+        />
+      </div>
+
+      <div class="form-group separa">
+        <label class="col-md-4 control-label" for="e-mail"
+          >E-mail:</label
+        >
+
+        <input
+          type="text"
+          placeholder="E-mail"
+          class="form-control input-md"
+          [(ngModel)]="admin.email"
+          [ngModelOptions]="{standalone: true}"
+        />
+      </div>
+
+      <div class="form-group separa">
+        <label class="col-md-4 control-label" for="CPF">Senha:</label>
+
+        <input
+          id="cpf"
+          name="CPF"
+          type="password"
+          placeholder="Senha"
+          class="form-control input-md"
+          [(ngModel)]="admin.senha"
+        />
+      </div>
+
+      <div class="form-group separa">
+        <label class="col-md-4 control-label" for="Telefone"
+          >Telefone:</label
+        >
+
+        <input
+          id="telefone"
+          name="Telefone"
+          type="text"
+          placeholder="Telefone"
+          class="form-control input-md"
+          [(ngModel)]="admin.telefone"
+        />
+      </div>
+
+      <div class="ajeitaBotao">
+        <div class="botao">
+          <button (click)="save()" type="button" class="btn btn-warning btn-md">
+            Editar
+          </button>
+        </div>
+  
+        <div class="botao2">
+          <button
+            routerLink="/home/cadastro"
+            type="button"
+            class="btn btn-primary btn-md"
+          >
+            Voltar
+          </button> 
+        </div>
+
+        <div class="botao3">
+          <button
+            routerLink=""
+            type="button"
+            class="btn btn-danger btn-md"
+          >
+            Sair
+          </button> 
+        </div>
+      </div>
+      
+    </div>
+   
+  </div>
+</form>
+
+<script
+  src="https://kit.fontawesome.com/b5463cd1fb.js"
+  crossorigin="anonymous"
+></script>

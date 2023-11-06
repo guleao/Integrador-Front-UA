@@ -36,6 +36,7 @@ import { PhoneMaskDirective } from './phone-mask.directive';
 import { RgMaskDirective } from './rg-mask.directive';
 import { DialogConcluirComponent } from './dialogs/atividade-list-dialog/dialog-concluir/dialog-concluir.component';
 import { PessoasListDialogComponent } from './dialogs/pessoas-list-dialog/pessoas-list-dialog.component';
+import { CadastroadminComponent } from './pages/admin/cadastroadmin/cadastroadmin.component';
 
 
 
@@ -62,7 +63,8 @@ import { PessoasListDialogComponent } from './dialogs/pessoas-list-dialog/pessoa
     PhoneMaskDirective,
     RgMaskDirective,
     DialogConcluirComponent,
-    PessoasListDialogComponent
+    PessoasListDialogComponent,
+    CadastroadminComponent
   ],
   imports: [
     BrowserModule,

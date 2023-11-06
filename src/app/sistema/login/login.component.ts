@@ -25,7 +25,7 @@ export class LoginComponent {
     this.loginService.save(this.loginC).subscribe((resultData: any) => {
       console.log(resultData);
       if (resultData.mensagem == "Login realizado com sucesso" && resultData.status == true) {
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/home/cadastro');
       }
       else if (resultData.mensagem == "Email inválido" && resultData.status == false) {
         alert("Email inválido");

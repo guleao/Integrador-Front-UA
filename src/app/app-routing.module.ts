@@ -11,6 +11,8 @@ import { PessoaResolver } from './guards/pessoa.resolver';
 import { CadastroAtividadelistComponent } from './pages/atividades/cadastro-atividadelist/cadastro-atividadelist.component';
 import { CadastroAtividadedetailsComponent } from './pages/atividades/cadastro-atividadedetails/cadastro-atividadedetails.component';
 import { AtividadeResolver } from './guards/atividade.resolver';
+import { CadastroadminComponent } from './pages/admin/cadastroadmin/cadastroadmin.component';
+import { AdminResolver } from './guards/admin.resolver';
 
 const routes: Routes = [
 
@@ -24,6 +26,10 @@ const routes: Routes = [
     {path:"cadastro", component: CadastrolistComponent},
     {path:"novocadastro", component: CadastrodetailsComponent},
     { path: 'cadastro/edit/:id', component: CadastrodetailsComponent, resolve: { pessoa: PessoaResolver } },
+    {path:"cadastroAdmin", component: CadastroadminComponent},
+    {path:"perfilAdmin/:id", component: CadastroadminComponent,  resolve: { admin: AdminResolver }},
+
+
 
     { path: "agenda", component: CadastroAtividadelistComponent },
     { path: "cadastroAtividade", component: CadastroAtividadedetailsComponent },
