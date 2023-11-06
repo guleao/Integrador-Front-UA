@@ -95,10 +95,11 @@ export class CadastroAtividadedetailsComponent {
     //   }
     // });
 
-   
-   if (this.atividade.id > 0) {
+
+    if (this.atividade.id > 0) {
       this.atividadeService.update(this.atividade).subscribe({
         next: atividade => {
+          alert('Editado com sucesso')
           this.retorno.emit(atividade);
         },
         error: erro => {
@@ -153,7 +154,7 @@ export class CadastroAtividadedetailsComponent {
     this.objetoSelecionadoParaEdicao = new Atividade();
     this.indiceSelecionadoParaEdicao = -1;
 
-    this.modalRef = this.modalService.open(modal, { size: 'md' });
+    this.modalRef = this.modalService.open(modal, { size: 'lg' });
   }
 
   // ngOnInit(): void {

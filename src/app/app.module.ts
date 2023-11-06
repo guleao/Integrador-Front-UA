@@ -34,6 +34,8 @@ import { DialogCancelarComponent } from './dialogs/atividade-list-dialog/dialog-
 import { CpfMaskDirective } from './cpf-mask.directive';
 import { PhoneMaskDirective } from './phone-mask.directive';
 import { RgMaskDirective } from './rg-mask.directive';
+import { DialogConcluirComponent } from './dialogs/atividade-list-dialog/dialog-concluir/dialog-concluir.component';
+import { PessoasListDialogComponent } from './dialogs/pessoas-list-dialog/pessoas-list-dialog.component';
 
 
 
@@ -58,7 +60,9 @@ import { RgMaskDirective } from './rg-mask.directive';
     DialogCancelarComponent,
     CpfMaskDirective,
     PhoneMaskDirective,
-    RgMaskDirective
+    RgMaskDirective,
+    DialogConcluirComponent,
+    PessoasListDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import { AtividadeService } from 'src/app/services/atividade.service';
 import { switchMap } from 'rxjs';
 import { AtividadeListDialogComponent } from 'src/app/dialogs/atividade-list-dialog/atividade-list-dialog.component';
 import { DialogCancelarComponent } from 'src/app/dialogs/atividade-list-dialog/dialog-cancelar/dialog-cancelar.component';
+import { DialogConcluirComponent } from 'src/app/dialogs/atividade-list-dialog/dialog-concluir/dialog-concluir.component';
 
 
 @Component({
@@ -59,8 +60,17 @@ export class CadastroAtividadelistComponent {
     });
   }
 
+  openDialogConcluir(id: number) {
+    const dialogRef = this.dialog.open(DialogConcluirComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == true) {
+        this.concluirAtividade(id);
+      }
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+
   onSearch() {
-    alert('teste')
     this.value = this.queryField.value;
     this.value = this.value.toLowerCase();
     if (this.value && (this.value = this.value.trim()) != '') {

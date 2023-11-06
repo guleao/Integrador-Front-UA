@@ -1,6 +1,6 @@
 .geral {
   display: flex;
-  background-color: whitesmoke;
+  background-color: rgba(128, 128, 128, 0.048);
   margin-left: 2%;
   margin-right: 2%;
 
@@ -9,6 +9,7 @@
   border: 1px;
   border-radius: 15px;
   box-shadow: 1px 1px 0 0 rgb(178, 174, 174);
+  border: 1px solid rgba(0, 0, 0, 0.212);
 }
 
 .ajusteCima {
@@ -21,6 +22,8 @@
   margin-left: 10px;
   margin-right: 20px;
   margin-top: 20px;
+
+ 
 }
 
 #novoCadastro {
@@ -29,6 +32,7 @@
 
   margin-left: 10px;
   margin-top: 2px;
+  
 }
 // Formulário de novo cadastro :
 

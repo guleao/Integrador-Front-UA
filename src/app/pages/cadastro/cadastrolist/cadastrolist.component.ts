@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Pessoa } from 'src/app/models/pessoa';
 import { PessoaService } from 'src/app/services/pessoa.service';
 import { FormControl} from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { PessoasListDialogComponent } from 'src/app/dialogs/pessoas-list-dialog/pessoas-list-dialog.component';
 
 
 @Component({
@@ -29,8 +31,19 @@ export class CadastrolistComponent {
   pessoaService = inject(PessoaService);
 
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router, private route: ActivatedRoute, public dialog:MatDialog) {
     this.listAll();
+  }
+
+  openDialog(id: number) {
+    const dialogRef = this.dialog.open(PessoasListDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == true) {
+        this.deletar(id);
+      }
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   onSearch(){
