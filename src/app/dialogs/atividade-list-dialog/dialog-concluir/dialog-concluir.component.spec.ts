@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatDialogModule } from '@angular/material/dialog'; 
 import { DialogConcluirComponent } from './dialog-concluir.component';
 
 describe('DialogConcluirComponent', () => {
@@ -8,7 +8,8 @@ describe('DialogConcluirComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DialogConcluirComponent]
+      declarations: [DialogConcluirComponent],
+      imports: [MatDialogModule] 
     });
     fixture = TestBed.createComponent(DialogConcluirComponent);
     component = fixture.componentInstance;

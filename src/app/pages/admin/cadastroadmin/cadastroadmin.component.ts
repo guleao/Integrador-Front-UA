@@ -59,4 +59,6 @@ export class CadastroadminComponent {
     console.log(admin);
   }
 
+  
+
 }

@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatDialogModule } from '@angular/material/dialog';  
 import { DialogCancelarComponent } from './dialog-cancelar.component';
 
 describe('DialogCancelarComponent', () => {
@@ -8,7 +8,8 @@ describe('DialogCancelarComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DialogCancelarComponent]
+      declarations: [DialogCancelarComponent],
+      imports: [MatDialogModule]
     });
     fixture = TestBed.createComponent(DialogCancelarComponent);
     component = fixture.componentInstance;

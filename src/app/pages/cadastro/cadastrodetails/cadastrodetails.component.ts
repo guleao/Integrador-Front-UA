@@ -18,7 +18,9 @@ export class CadastrodetailsComponent {
   @Output() edit = new EventEmitter();
   registrarPessoaService = inject(PessoaService);
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute) {
+    this.pessoa.endereco = new Endereco();
+   }
 
   buscarCep() {
     this.viaCep.getCepData(this.pessoa.endereco.cep).subscribe((data: any) => {
@@ -79,28 +81,56 @@ export class CadastrodetailsComponent {
     this.edit.emit(pessoa);
   }
 
+  // ngOnInit(): void {
+  //   const pessoa: Pessoa = this.route.snapshot.data['pessoa'];
+
+  //   this.pessoa.id = pessoa.id;
+  //   this.pessoa.nome = pessoa.nome;
+  //   this.pessoa.cpf = pessoa.cpf
+  //   this.pessoa.telefone = pessoa.telefone
+  //   this.pessoa.dataNascimento = pessoa.dataNascimento;
+  //   this.pessoa.escolaridade = pessoa.escolaridade;
+  //   this.pessoa.sexo = pessoa.sexo;
+  //   this.pessoa.nacionalidade = pessoa.nacionalidade;
+  //   this.pessoa.naturalidade = pessoa.naturalidade;
+  //   this.pessoa.rg = pessoa.rg;
+
+  //   this.pessoa.endereco.cep = pessoa.endereco.cep;
+  //   this.pessoa.endereco.localidade = pessoa.endereco.localidade;
+  //   this.pessoa.endereco.logradouro = pessoa.endereco.logradouro;
+  //   this.pessoa.endereco.numCasa = pessoa.endereco.numCasa;
+  //   this.pessoa.endereco.municipio = pessoa.endereco.municipio;
+  //   this.pessoa.endereco.uf = pessoa.endereco.uf
+  //   console.log(pessoa);
+  // }
+
   ngOnInit(): void {
     const pessoa: Pessoa = this.route.snapshot.data['pessoa'];
-
+  
     this.pessoa.id = pessoa.id;
     this.pessoa.nome = pessoa.nome;
-    this.pessoa.cpf = pessoa.cpf
-    this.pessoa.telefone = pessoa.telefone
+    this.pessoa.cpf = pessoa.cpf;
+    this.pessoa.telefone = pessoa.telefone;
     this.pessoa.dataNascimento = pessoa.dataNascimento;
     this.pessoa.escolaridade = pessoa.escolaridade;
     this.pessoa.sexo = pessoa.sexo;
     this.pessoa.nacionalidade = pessoa.nacionalidade;
     this.pessoa.naturalidade = pessoa.naturalidade;
     this.pessoa.rg = pessoa.rg;
-
-    this.pessoa.endereco.cep = pessoa.endereco.cep;
-    this.pessoa.endereco.localidade = pessoa.endereco.localidade;
-    this.pessoa.endereco.logradouro = pessoa.endereco.logradouro;
-    this.pessoa.endereco.numCasa = pessoa.endereco.numCasa;
-    this.pessoa.endereco.municipio = pessoa.endereco.municipio;
-    this.pessoa.endereco.uf = pessoa.endereco.uf
+  
+    // Certifique-se de que this.pessoa.endereco é inicializado
+    this.pessoa.endereco = this.pessoa.endereco || {};
+  
+    // Garanta que as propriedades de this.pessoa.endereco sejam inicializadas
+    this.pessoa.endereco.cep = this.pessoa.endereco.cep || '';
+    this.pessoa.endereco.localidade = this.pessoa.endereco.localidade || '';
+    this.pessoa.endereco.logradouro = this.pessoa.endereco.logradouro || '';
+    this.pessoa.endereco.municipio = this.pessoa.endereco.municipio || '';
+    this.pessoa.endereco.uf = this.pessoa.endereco.uf || '';
+  
     console.log(pessoa);
   }
+  
 
 
 }

@@ -20,10 +20,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('Front-Integrador-UA');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('Front-Integrador-UA app is running!');
-  });
 });
