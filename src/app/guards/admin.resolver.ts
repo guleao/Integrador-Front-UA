@@ -22,9 +22,10 @@ export class AdminResolver implements Resolve<Admin> {
     const admNull: Admin = {
       id: 0,
       nomeAdm: '',
-      email: '',
-      senha: '',
-      telefone: ''
+      username: '',
+      token: '',
+      telefone: '',
+      role: ''
     
     };
     return of(admNull);

@@ -52,8 +52,8 @@ export class CadastroadminComponent {
 
     this.admin.id = admin.id;
     this.admin.nomeAdm = admin.nomeAdm;
-    this.admin.email = admin.email;
-    this.admin.senha = admin.senha;
+    this.admin.username = admin.username;
+    this.admin.token = admin.token;
     this.admin.telefone = admin.telefone
     
     console.log(admin);

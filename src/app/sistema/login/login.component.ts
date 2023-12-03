@@ -10,32 +10,30 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  loginC: Login = new Login();
 
+  login: Login = new Login();
+  roteador = inject(Router);
   loginService = inject(LoginService);
 
-  constructor(private router: Router, private fb: FormBuilder) { }
+  constructor() {
+    this.loginService.removerToken();
+  }
 
-  login() {
-    if (!this.loginC.email && !this.loginC.senha) {
-      alert('Login Inválido');
-      return;
-    }
-
-    this.loginService.save(this.loginC).subscribe((resultData: any) => {
-      console.log(resultData);
-      if (resultData.mensagem == "Login realizado com sucesso" && resultData.status == true) {
-        this.router.navigateByUrl('/home/cadastro');
-      }
-      else if (resultData.mensagem == "Email inválido" && resultData.status == false) {
-        alert("Email inválido");
-      }
-      else if (resultData.mensagem == "Senha inválida" && resultData.status == false) {
-        alert("Senha Inválida");
-      }
-      else if (resultData.mensagem == "Login Inválido" && resultData.status == false) {
-        alert("Login inválido");
+  logar() {
+    this.loginService.logar(this.login).subscribe({
+      next: user => { // QUANDO DÁ CERTO
+        console.log(user);
+        this.loginService.addToken(user.token);
+        this.roteador.navigate(['/home']);
+      },
+      error: erro => { // QUANDO DÁ ERRO
+        alert('Exemplo de tratamento de erro/exception! Observe o erro no console!');
+        console.error(erro);
       }
     });
   }
 }
+
+
+
+// constructor(private router: Router, private fb: FormBuilder) { }

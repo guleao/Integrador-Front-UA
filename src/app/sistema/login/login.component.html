@@ -21,13 +21,13 @@
                 <form>
                     <div class="ajusteCaixa">
                         <input type="text" 
-                        [(ngModel)]="loginC.email" id="login" class="fadeIn second" name="login" placeholder="Digite seu e-mail...">
+                        [(ngModel)]="login.username" id="login" class="fadeIn second" name="login" placeholder="Digite seu e-mail...">
                     </div>
                     <div class="ajusteCaixa">
-                        <input [(ngModel)]="loginC.senha" type="password" id="password" class="fadeIn third" name="login" placeholder="Digite sua senha...">
+                        <input [(ngModel)]="login.password" type="password" id="password" class="fadeIn third" name="login" placeholder="Digite sua senha...">
                     </div>
                     <div class="ajustePerdi">
-                        <input (click)="login()" type="submit" class="fadeIn fourth" value="Log In">
+                        <input (click)="logar()" type="submit" class="fadeIn fourth" value="Log In">
                     </div>
             
                 </form>

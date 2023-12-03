@@ -50,4 +50,6 @@ export class PessoaService {
   getTotalAtivos(): Observable<number> {
     return this.http.get<number>(`${this.API}/total-ativos`);
   }
+
+  
 }

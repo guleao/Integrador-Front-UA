@@ -61,7 +61,7 @@ describe('CadastroadminComponent', () => {
 
   it('chamada do método update', fakeAsync(() => {
     spyOn(window, 'alert');
-    const admin: Admin = { id: 1, nomeAdm: 'Admin', email: 'admin@example.com', senha: 'password', telefone: '123456789' };
+    const admin: Admin = { id: 1, nomeAdm: 'Admin', username: 'admin@example.com', token: 'password', telefone: '123456789', role: 'ADMIN' };
     component.admin = admin;
 
     mockAdminService.update.and.returnValue(of(admin));
@@ -75,7 +75,7 @@ describe('CadastroadminComponent', () => {
 
 
   it('chamada do evento OnEdit', () => {
-    const admin: Admin = { id: 1, nomeAdm: 'Admin', email: 'admin@example.com', senha: 'password', telefone: '123456789' };
+    const admin: Admin = { id: 1, nomeAdm: 'Admin', username: 'admin@example.com', token: 'password', telefone: '123456789', role: 'ADMIN' };
     spyOn(component.edit, 'emit');
 
     component.onEdit(admin);

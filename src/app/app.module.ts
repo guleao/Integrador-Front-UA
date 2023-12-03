@@ -7,10 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './sistema/login/login.component';
 import { IndexComponent } from './layout/index/index.component';
 import { HeaderComponent } from './layout/header/header.component';
-import { FooterComponent } from './layout/footer/footer.component';
-import { RecuperarComponent } from './sistema/recuperar/recuperar.component';
-import { CodigoComponent } from './sistema/codigo/codigo.component';
-import { NovasenhaComponent } from './sistema/novasenha/novasenha.component';
+
 import { CadastrodetailsComponent } from './pages/cadastro/cadastrodetails/cadastrodetails.component';
 import { CadastrolistComponent } from './pages/cadastro/cadastrolist/cadastrolist.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -37,6 +34,7 @@ import { RgMaskDirective } from './rg-mask.directive';
 import { DialogConcluirComponent } from './dialogs/atividade-list-dialog/dialog-concluir/dialog-concluir.component';
 import { PessoasListDialogComponent } from './dialogs/pessoas-list-dialog/pessoas-list-dialog.component';
 import { CadastroadminComponent } from './pages/admin/cadastroadmin/cadastroadmin.component';
+import { httpInterceptorProviders } from './interceptors/httpinterceptor.service';
 
 
 
@@ -49,10 +47,6 @@ import { CadastroadminComponent } from './pages/admin/cadastroadmin/cadastroadmi
     LoginComponent,
     IndexComponent,
     HeaderComponent,
-    FooterComponent,
-    RecuperarComponent,
-    CodigoComponent,
-    NovasenhaComponent,
     CadastrodetailsComponent,
     CadastrolistComponent,
     CadastroAtividadedetailsComponent,
@@ -86,21 +80,22 @@ import { CadastroadminComponent } from './pages/admin/cadastroadmin/cadastroadmi
     MatInputModule,
     MatButtonModule,
   ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }, // Defina o local para o Brasil
+  providers: [httpInterceptorProviders, { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }, 
   {
     provide: MAT_DATE_FORMATS,
     useValue: {
       parse: {
-        dateInput: 'DD/MM/YYYY', // Formato de entrada (brasileiro)
+        dateInput: 'DD/MM/YYYY',
       },
       display: {
-        dateInput: 'DD/MM/YYYY', // Formato de exibição (brasileiro)
+        dateInput: 'DD/MM/YYYY', 
         monthYearLabel: 'MMMM YYYY',
         dateA11yLabel: 'LL',
         monthYearA11yLabel: 'MMMM YYYY',
       },
     },
   },],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
