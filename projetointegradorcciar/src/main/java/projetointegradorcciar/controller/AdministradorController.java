@@ -2,6 +2,7 @@ package projetointegradorcciar.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
@@ -37,24 +38,24 @@ public class AdministradorController {
     }
 
     @PostMapping
-    public ResponseEntity<String> cadastrar(@Validated @RequestBody final AdministradorDTO administrador) {
+    public ResponseEntity<HttpStatus> cadastrar(@Validated @RequestBody final AdministradorDTO administrador) {
         try {
             administradorService.validaAdm(administrador);
             return ResponseEntity.created(null).body(null);
         } catch (Exception e) {
-            String errorMessage = getErrorMessage(e);
-            return ResponseEntity.badRequest().body(e.getMessage());
+            // String errorMessage = getErrorMessage(e);
+            return ResponseEntity.notFound().build();
         }
     }
 
     @PutMapping ("/{id}")
-    public ResponseEntity<String> editar(@PathVariable("id") final Long id, @Validated @RequestBody final AdministradorDTO administradorDTO) {
+    public ResponseEntity<HttpStatus> editar(@PathVariable("id") final Long id, @Validated @RequestBody final AdministradorDTO administradorDTO) {
         try {
             administradorService.editaAdm(id, administradorDTO);
-            return ResponseEntity.ok("Administrador atualizado com Sucesso");
+            return ResponseEntity.created(null).body(null);
         } catch (DataIntegrityViolationException e) {
-            String errorMessage = getErrorMessage(e);
-            return ResponseEntity.internalServerError().body(errorMessage);
+            // String errorMessage = getErrorMessage(e);
+            return ResponseEntity.notFound().build();
         }
     }
 

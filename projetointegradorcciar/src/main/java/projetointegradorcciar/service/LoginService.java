@@ -1,41 +1,68 @@
 package projetointegradorcciar.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import io.jsonwebtoken.lang.Assert;
+import projetointegradorcciar.config.JwtServiceGenerator;
+import projetointegradorcciar.dto.AdministradorDTO;
 import projetointegradorcciar.dto.LoginDTO;
 import projetointegradorcciar.entity.Administrador;
-import projetointegradorcciar.payload.response.LoginMessage;
-import projetointegradorcciar.repository.AdministradorRepository;
-
-import java.util.Optional;
+import projetointegradorcciar.repository.LoginRepository;
 
 @Service
 public class LoginService {
 
     @Autowired
-    AdministradorRepository administradorRepository;
+    private LoginRepository repository;
     @Autowired
-    PasswordEncoder passwordEncoder;
+    private JwtServiceGenerator jwtService;
+    @Autowired
+    private AuthenticationManager authenticationManager;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-    public LoginMessage  validaLogin(LoginDTO loginDTO) {
-        Administrador administrador1 = administradorRepository.findByEmail(loginDTO.getEmail());
-        if (administrador1 != null) {
-            String senha = loginDTO.getSenha();
-            String senhaEncriptada = administrador1.getSenha();
-            boolean validaSenha = passwordEncoder.matches(senha, senhaEncriptada);
-            if (validaSenha) {
-                Optional<Administrador> adm = administradorRepository.findOneByEmailAndSenha(loginDTO.getEmail(), senhaEncriptada);
-                if (adm.isPresent()) {
-                    return new LoginMessage("Login realizado com sucesso", true);
-                } else {
-                    return new LoginMessage("Login inválido", false);
-                }
-            } else {
-                return new LoginMessage("Senha inválida", false);
-            }
-        } else {
-            return new LoginMessage("Email inválido", false);
-        }
+    public AdministradorDTO logar(LoginDTO loginDTO) {
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(
+                        loginDTO.getUsername(),
+                        loginDTO.getPassword()
+                        )
+                );
+        Administrador user = repository.findByUsername(loginDTO.getUsername()).orElseThrow();
+        var jwtToken = jwtService.generateToken(user);
+
+        return toUserDTO(user, jwtToken);
+    }
+
+
+    private AdministradorDTO toUserDTO(Administrador user, String token) {
+        AdministradorDTO userDTO = new AdministradorDTO();
+        userDTO.setId(user.getId());
+        userDTO.setRole(user.getRole());
+        userDTO.setToken(token);
+        userDTO.setUsername(user.getUsername());
+        return userDTO;
+    }
+
+    public AdministradorDTO include(Administrador user) {
+        Assert.notNull(user.getUsername(), "Username não informado!");
+        Assert.notNull(user.getPassword(), "Password não informado!");
+        Assert.notNull(user.getRole(), "Role não informada!");
+
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        AdministradorDTO userDTO = new AdministradorDTO();
+        userDTO.setUsername(user.getUsername());
+        userDTO.setRole(user.getRole());
+        userDTO.setToken(user.getPassword());
+
+        repository.save(user);
+
+        return userDTO;
     }
 }

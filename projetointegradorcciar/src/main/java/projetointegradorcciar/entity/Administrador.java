@@ -1,20 +1,24 @@
 package projetointegradorcciar.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import java.util.ArrayList;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.br.CPF;
+import java.util.Collection;
+import java.util.List;
+
 
 @Entity
 @Table(name = "administrador", schema = "public")
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Administrador {
+public class Administrador implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,23 +28,59 @@ public class Administrador {
     @Column (name = "nome_adm", nullable = false)
     private String  nomeAdm;
 
-    @Column (name = "login_nome", nullable = false)
-    private String  loginNome;
-
-    @Pattern(regexp = "\\(?\\d{2,}\\)?[ -]?\\d{4,}[\\-\\s]?\\d{4}", message = "Formato de telefone inválido")
     @Column (name = "telefone", nullable = false)
     private String telefone;
 
-    @Column (name = "senha", nullable = false)
-    private String senha;
+    @Column (name = "password", nullable = false)
+    private String password;
 
-    @Column (name = "email", nullable = false)
-    private String email;
+    @Column (name = "username", nullable = false)
+    private String username;
 
-    @Column (name = "email_recup", nullable = false)
-    private String emailRecup;
+    @Column (name = "role", nullable = false)
+    private String role;
 
-    @Column(name = "cpf_adm", nullable = false)
-    @CPF(message = "CPF inválido")
-    private String cpf;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(new SimpleGrantedAuthority(this.role));
+        return authorities;
+    }
+
+    @Override
+    public String getPassword() {
+        // TODO Auto-generated method stub
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        // TODO Auto-generated method stub
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        // TODO Auto-generated method stub
+        return true;
+    }
 }

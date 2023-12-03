@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.Assert;
 import projetointegradorcciar.dto.AdministradorDTO;
 import projetointegradorcciar.entity.Administrador;
 import projetointegradorcciar.repository.AdministradorRepository;
@@ -23,14 +22,12 @@ public class AdministradorService {
         var administrador = new Administrador();
         BeanUtils.copyProperties(administradorDTO, administrador);
 
-        Administrador administradorExistente = administradorRepository.findByCpf(administrador.getCpf());
-        Administrador admEmailExistente = administradorRepository.findByEmail (administrador.getEmail());
+        // Administrador admEmailExistente = administradorRepository.findByEmail (administrador.getUsername());
 
-        Assert.isTrue(administradorExistente == null || administradorExistente.equals(administrador.getCpf()), "CPF Já existente");
-        Assert.isTrue(admEmailExistente == null || admEmailExistente.equals(administrador.getEmail()), "E-mail Já existente");
+        // Assert.isTrue(admEmailExistente == null || admEmailExistente.equals(administrador.getUsername()), "E-mail Já existente");
 
-        String senhaCodificada = this.passwordEncoder.encode(administrador.getSenha());
-        administrador.setSenha(senhaCodificada);
+        String senhaCodificada = this.passwordEncoder.encode(administrador.getPassword());
+        administrador.setPassword(senhaCodificada);
 
         administradorRepository.save(administrador);
     }

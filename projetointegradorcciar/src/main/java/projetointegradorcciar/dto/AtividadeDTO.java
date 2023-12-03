@@ -10,7 +10,6 @@ import lombok.Setter;
 import org.springframework.validation.annotation.Validated;
 import projetointegradorcciar.entity.Pessoa;
 
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;

@@ -2,10 +2,7 @@ package projetointegradorcciar.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import projetointegradorcciar.entity.Atividade;
-
-import java.time.LocalDate;
 import java.util.List;
 
 public interface AtividadeRepository extends JpaRepository<Atividade,Long> {

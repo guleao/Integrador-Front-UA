@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import projetointegradorcciar.dto.PessoaDTO;
 import projetointegradorcciar.entity.Pessoa;
-import projetointegradorcciar.repository.AdministradorRepository;
 import projetointegradorcciar.repository.PessoaRepository;
 
 import java.time.LocalDateTime;
@@ -18,8 +17,6 @@ public class PessoaService {
     @Autowired
     private PessoaRepository pessoaRepository;
 
-    @Autowired
-    private AdministradorRepository administradorRepository;
 
     @Transactional(rollbackFor = Exception.class)
     public void validaPessoa (PessoaDTO pessoaDTO)
@@ -39,6 +36,9 @@ public class PessoaService {
         Assert.isTrue(pessoa.getDataNascimento() <= anoLimite, "Ano limite excedido");
 
         pessoa.setAtivo(true);
+        pessoa.setDataCadastro(pessoa.getDataCadastro());
+
+        pessoa.setDataCadastro(LocalDateTime.now());
 
         this.pessoaRepository.save(pessoa);
     }

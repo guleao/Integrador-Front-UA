@@ -55,7 +55,7 @@ public class AtividadeController {
         try {
             return this.atividadeService.validaAtividade(atividadeDTO);
         } catch (DataIntegrityViolationException e) {
-            String errorMessage = getErrorMessage(e);
+            // String errorMessage = getErrorMessage(e);
             return null;
         }
     }
@@ -107,7 +107,7 @@ public class AtividadeController {
         }
     }
 
-    public String getErrorMessage(Exception e) {
-        return "Error: " + e.getMessage();
-    }
+    // public String getErrorMessage(Exception e) {
+    //     return "Error: " + e.getMessage();
+    // }
 }

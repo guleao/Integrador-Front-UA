@@ -6,23 +6,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import projetointegradorcciar.dto.AtividadeDTO;
 import projetointegradorcciar.entity.Atividade;
-import projetointegradorcciar.entity.Pessoa;
 import projetointegradorcciar.repository.AtividadeRepository;
-import projetointegradorcciar.repository.PessoaRepository;
-
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
+
 
 @Service
 public class AtividadeService {
     @Autowired
     private AtividadeRepository atividadeRepository;
 
-    @Autowired
-    private PessoaRepository pessoaRepository;
+  
 
     @Transactional(rollbackFor = Exception.class)
     public AtividadeDTO validaAtividade (AtividadeDTO atividadeDTO){

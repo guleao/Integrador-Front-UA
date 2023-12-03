@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 import org.springframework.validation.annotation.Validated;
-import projetointegradorcciar.entity.Administrador;
 import projetointegradorcciar.entity.Endereco;
 import projetointegradorcciar.entity.Escolaridade;
 import projetointegradorcciar.entity.Sexo;

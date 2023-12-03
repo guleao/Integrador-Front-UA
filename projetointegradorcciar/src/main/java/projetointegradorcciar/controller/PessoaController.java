@@ -73,7 +73,7 @@ public class PessoaController {
             pessoaService.editarPessoa(id, pessoaDTO);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (DataIntegrityViolationException e) {
-            String errorMessage = getErrorMessage(e);
+            // String errorMessage = getErrorMessage(e);
             return new ResponseEntity<> (null, HttpStatus.BAD_REQUEST);
         }
     }
@@ -84,12 +84,12 @@ public class PessoaController {
             return new ResponseEntity<>(HttpStatus.OK);
         }
         catch (Exception e){
-            String errorMessage = getErrorMessage(e);
+            // String errorMessage = getErrorMessage(e);
             return new ResponseEntity<> (null, HttpStatus.BAD_REQUEST);
         }
     }
 
-    public String getErrorMessage(Exception e) {
-        return "Error: " + e.getMessage();
-    }
+    // public String getErrorMessage(Exception e) {
+    //     return "Error: " + e.getMessage();
+    // }
 }

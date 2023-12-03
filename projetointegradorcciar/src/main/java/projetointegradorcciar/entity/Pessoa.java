@@ -10,8 +10,7 @@ import lombok.Setter;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
+
 
 @Entity
 @Table(name = "Pessoas", schema = "public")
@@ -55,7 +54,7 @@ public class Pessoa {
     private Sexo sexo;
 
     @Column (name = "cadastro_data")
-    private Date dataCadastro;
+    private LocalDateTime dataCadastro;
     @Column (name = "edicao_cadastro")
     private LocalDateTime edicaoCadastro;
 
