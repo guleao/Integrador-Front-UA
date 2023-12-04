@@ -7,7 +7,7 @@ export const rotaguardGuard: CanActivateFn = (route, state) => {
   let roteador = inject(Router);
 
   if (loginService.getToken() == null) {
-    roteador.navigate([""]);
+    roteador.navigate(["/login"]);
     return false;
   } else
     return true;

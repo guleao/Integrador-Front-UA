@@ -51,5 +51,5 @@ export class PessoaService {
     return this.http.get<number>(`${this.API}/total-ativos`);
   }
 
-  
+
 }

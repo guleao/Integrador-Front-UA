@@ -135,16 +135,29 @@ export class CadastroAtividadedetailsComponent {
   // console.log(this.atividade.pessoas)
   // console.log(this.atividadeForm.value);
 
-
   retornoPessoasList(pessoa: Pessoa) {
-
     if (this.atividade.pessoas == null)
       this.atividade.pessoas = [];
-
+  
     this.pessoas.push(pessoa);
     this.atividade.pessoas = this.pessoas;
-    this.modalRef.dismiss();
+  
+    // Verifique se modalRef está definido antes de chamar dismiss
+    if (this.modalRef) {
+      this.modalRef.dismiss();
+    }
   }
+
+
+  // retornoPessoasList(pessoa: Pessoa) {
+
+  //   if (this.atividade.pessoas == null)
+  //     this.atividade.pessoas = [];
+
+  //   this.pessoas.push(pessoa);
+  //   this.atividade.pessoas = this.pessoas;
+  //   this.modalRef.dismiss();
+  // }
 
   lancar(modal: any) {
     this.modalRef = this.modalService.open(modal, { size: 'lg' });

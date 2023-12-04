@@ -14,30 +14,32 @@ import { AdminResolver } from './guards/admin.resolver';
 
 const routes: Routes = [
 
-  {path: "", component: LoginComponent},
-
- 
-
-  {path: "home", component: IndexComponent, children: [
-    {path:"cadastro", component: CadastrolistComponent},
-    {path:"novocadastro", component: CadastrodetailsComponent},
-    { path: 'cadastro/edit/:id', component: CadastrodetailsComponent, resolve: { pessoa: PessoaResolver } },
-    {path:"cadastroAdmin", component: CadastroadminComponent},
-    {path:"perfilAdmin/:id", component: CadastroadminComponent,  resolve: { admin: AdminResolver }},
+  { path: "login", component: LoginComponent },
 
 
 
-    { path: "agenda", component: CadastroAtividadelistComponent },
-    { path: "cadastroAtividade", component: CadastroAtividadedetailsComponent },
-    { path: 'agenda/edit/:id', component: CadastroAtividadedetailsComponent, resolve: { atividade: AtividadeResolver } }
-  ]},
+  {
+    path: "home", component: IndexComponent, children: [
+      { path: "cadastro", component: CadastrolistComponent },
+      { path: "novocadastro", component: CadastrodetailsComponent },
+      { path: 'cadastro/edit/:id', component: CadastrodetailsComponent, resolve: { pessoa: PessoaResolver } },
+      { path: "cadastroAdmin", component: CadastroadminComponent },
+      { path: "perfilAdmin/:id", component: CadastroadminComponent, resolve: { admin: AdminResolver } },
 
-  
+
+
+      { path: "agenda", component: CadastroAtividadelistComponent },
+      { path: "cadastroAtividade", component: CadastroAtividadedetailsComponent },
+      { path: 'agenda/edit/:id', component: CadastroAtividadedetailsComponent, resolve: { atividade: AtividadeResolver } }
+    ]
+  },
+
+
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
